@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Grabbable : MonoBehaviour {
+public class GrabbableObject : MonoBehaviour {
 
 	private bool isHeld = false;
 	private Vector3 mouseOffset;
@@ -20,17 +20,13 @@ public class Grabbable : MonoBehaviour {
 	}
 
 	void OnMouseEnter() {
-		if(MouseEnter != null) {
+		if(MouseEnter != null)
 			MouseEnter();
-			Debug.Log("Grab Mouse Enter");
-		}
 	}
 
 	void OnMouseExit() {
-		if(MouseExit != null) {
+		if(MouseExit != null)
 			MouseExit();
-			Debug.Log("Grab Mouse Exit");
-		}	
 	}
 
 	void OnMouseDown() {

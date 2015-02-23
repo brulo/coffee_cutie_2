@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class HighlightSpriteOnMouseEnter : MonoBehaviour {
+
 	public Color highlightColor = Color.red;
 
 	void OnMouseEnter() {

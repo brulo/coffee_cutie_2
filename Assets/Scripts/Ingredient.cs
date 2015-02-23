@@ -1,19 +1,40 @@
-﻿using UnityEngine;
-using System.Collections;
+public struct Ingredient {
+	public IngredientType Type;
+	public int ingredientIndex;
 
-public class Ingredient : MonoBehaviour {
+	public Ingredient(IngredientType type, int ingredientIdx) { 
+		Type = type;
+		ingredientIndex = ingredientIdx;
+	}
 }
 
-public enum IngredientType {	
-	milkTwoPercent, milkSoy, milkNonFat,
-	syrupPlain, syrupVanilla, syrupMocha,
-	none
+public enum IngredientType {
+	Milk, 
+	Syrup,
+	Cup
 }
 
 public enum MilkType { 
-	milkTwoPercent, milkSoy, milkNonFat
+	MilkTwoPercent, MilkSoy, MilkNonFat,
+	Count
+}
+
+public enum SyrupType {
+	SyrupPlain, SyrupVanilla, SyrupMocha,
+	Count
 }
 
 public enum CupType {
-	cupForHere, cupToGo
+	HotForHere, HotToGo,
+	ColdForHere, ColdToGo,
+	None,
+	Count
 }
+
+/* public enum IngredientSubtype { */	
+/* 	MilkTwoPercent, MilkSoy, MilkNonFat, */
+/* 	SyrupPlain, SyrupVanilla, SyrupMocha, */
+/* 	HotToGo, HotForHere, ColdToGo, ColdForHere, */
+/* 	None */
+/* } */
+

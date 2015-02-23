@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class CursorHandler : MonoBehaviour {
+
 	public Vector2 cursorSize;
 	private SpriteRenderer spriteRenderer;
 	public Sprite regularSprite;
@@ -15,13 +16,13 @@ public class CursorHandler : MonoBehaviour {
 	}
 
 	void OnEnable() {
-		Grabbable.MouseEnter +=  SetGrabCursor;
-		Grabbable.MouseExit += SetRegularCursor;
+		GrabbableObject.MouseEnter +=  SetGrabCursor;
+		GrabbableObject.MouseExit += SetRegularCursor;
 	}	
 
 	void OnDisable() {
-		Grabbable.MouseEnter -= SetGrabCursor;
-		Grabbable.MouseExit -= SetRegularCursor;
+		GrabbableObject.MouseEnter -= SetGrabCursor;
+		GrabbableObject.MouseExit -= SetRegularCursor;
 	}	
 
 	public void SetGrabCursor() {
@@ -33,6 +34,7 @@ public class CursorHandler : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		// Update sprite's position to mouse location.
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector3 newPosition = mousePosition;
 		newPosition.z = 10;

@@ -1,40 +1,13 @@
-public struct Ingredient {
-	public IngredientType Type;
-	public int ingredientIndex;
-
-	public Ingredient(IngredientType type, int ingredientIdx) { 
-		Type = type;
-		ingredientIndex = ingredientIdx;
-	}
+public enum Milk { 
+	TwoPercentMilk, SoyMilk, NonFatMilk
 }
 
-public enum IngredientType {
-	Milk, 
-	Syrup,
-	Cup
+public enum Syrup {
+	PlainSyrup, VanillaSyrup, MochaSyrup
 }
 
-public enum MilkType { 
-	MilkTwoPercent, MilkSoy, MilkNonFat,
-	Count
+public enum Cup {
+	HotCupForHere, HotCupToGo,
+	ColdCupForHere, ColdCupToGo,
+	NoCup
 }
-
-public enum SyrupType {
-	SyrupPlain, SyrupVanilla, SyrupMocha,
-	Count
-}
-
-public enum CupType {
-	HotForHere, HotToGo,
-	ColdForHere, ColdToGo,
-	None,
-	Count
-}
-
-/* public enum IngredientSubtype { */	
-/* 	MilkTwoPercent, MilkSoy, MilkNonFat, */
-/* 	SyrupPlain, SyrupVanilla, SyrupMocha, */
-/* 	HotToGo, HotForHere, ColdToGo, ColdForHere, */
-/* 	None */
-/* } */
-

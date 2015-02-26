@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 
 public class GrabbableObject : MonoBehaviour {
-
 	private bool isHeld = false;
 	private Vector3 mouseOffset;
 
@@ -42,5 +41,4 @@ public class GrabbableObject : MonoBehaviour {
 	void OnMouseUp() {
 		isHeld = false;
 	}
-
 }

@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public class Container {
 	private ContainerName name;
@@ -16,20 +17,28 @@ public class Container {
 
 	public Container(ContainerName n) {
 		name = n;
-		// Determine Temperature/Destination
-		if(name == ContainerName.HotCupForHere) {
+		DetermineType(n);
+	}
+
+	public Container() {
+		name = (ContainerName)Random.Range(0, (int)ContainerName.ColdCupToGo);
+		DetermineType(name);
+	}
+
+	private void DetermineType(ContainerName n) {
+		if(n == ContainerName.HotCupForHere) {
 			temperature = ContainerTemperature.Hot;
 			destination = ContainerDestination.ForHere;
 		}
-		else if(name == ContainerName.HotCupToGo) {
+		else if(n == ContainerName.HotCupToGo) {
 			temperature = ContainerTemperature.Hot;
 			destination = ContainerDestination.ToGo;
 		}
-		else if(name == ContainerName.ColdCupForHere) {
+		else if(n == ContainerName.ColdCupForHere) {
 			temperature = ContainerTemperature.Cold;
 			destination = ContainerDestination.ForHere;
 		}
-		else if(name == ContainerName.ColdCupToGo) {
+		else if(n == ContainerName.ColdCupToGo) {
 			temperature = ContainerTemperature.Cold;
 			destination = ContainerDestination.ToGo;
 		}

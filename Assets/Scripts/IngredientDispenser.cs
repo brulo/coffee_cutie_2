@@ -3,11 +3,11 @@ using System.Collections;
 
 public class IngredientDispenser : MonoBehaviour {
 	public Ingredient ingredient;
-	public IngredientName name;
+	public IngredientName ingredientName;
 	Collider2D drinkCollider = null;
 	
 	void Start() {
-		ingredient = new Ingredient(name);
+		ingredient = new Ingredient(ingredientName);
 	}	
 
 	void OnTriggerEnter2D(Collider2D col) {

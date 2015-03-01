@@ -1,18 +1,39 @@
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public class Ingredient {
-	public IngredientType Type;
-	public IngredientName Name;
+	private IngredientType type;
+	private IngredientName name;
+	public IngredientType Type { get { return type; } }
+	public IngredientName Name { get { return name; } }
 
-	public Ingredient(IngredientName name) {
-		Name = name;
+
+	// Create specific ingredient.
+	public Ingredient(IngredientName n) {
+		name = n;
 		// Determine Type
 		if((int)name <= (int)IngredientName.SoyMilk)
-			Type = IngredientType.Milk;
-		else
-			Type = IngredientType.Syrup;
+			type = IngredientType.Milk;
+		else if((int) name >= (int)IngredientName.RegularSyrup) { 
+			if((int)name <= (int)IngredientName.MochaSyrup) {
+				type = IngredientType.Syrup;
+			}
+		}
 	}
 
+	// Given an ingredient type, get a random ingredient of that type.
+	public Ingredient(IngredientType t) {
+		type = t;
+		if(t == IngredientType.Milk) {
+			name = (IngredientName)Random.Range((int)IngredientName.TwoPercentMilk,
+																					(int)IngredientName.SoyMilk);
+		}
+		else if (t == IngredientType.Syrup) {
+			name = (IngredientName)Random.Range((int)IngredientName.RegularSyrup,
+																					(int)IngredientName.MochaSyrup);
+		}
+	}
+	
 	public string GetTypeText() {
 		return Type.ToString();
 	}
@@ -28,7 +49,7 @@ public class Ingredient {
 
 public enum IngredientType {
 	Milk,
-	Syrup
+	Syrup,
 }
 
 public enum IngredientName {

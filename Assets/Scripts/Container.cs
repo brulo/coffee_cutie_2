@@ -1,41 +1,50 @@
 using System.Text.RegularExpressions;
 
 public class Container {
-	public ContainerName Name; 
-	public ContainerTemperature Temperature;
-	public ContainerDestination Destination;
+	private ContainerName name;
+	public ContainerName Name { 
+		get { return name; } 
+	} 
+	private ContainerTemperature temperature;
+	public ContainerTemperature Temperature { 
+		get { return temperature; }
+	}
+	private ContainerDestination destination;
+	public ContainerDestination Destination {
+		get { return destination; }
+	}
 
-	public Container(ContainerName name) {
-		Name = name;
+	public Container(ContainerName n) {
+		name = n;
 		// Determine Temperature/Destination
 		if(name == ContainerName.HotCupForHere) {
-			Temperature = ContainerTemperature.Hot;
-			Destination = ContainerDestination.ForHere;
+			temperature = ContainerTemperature.Hot;
+			destination = ContainerDestination.ForHere;
 		}
 		else if(name == ContainerName.HotCupToGo) {
-			Temperature = ContainerTemperature.Hot;
-			Destination = ContainerDestination.ToGo;
+			temperature = ContainerTemperature.Hot;
+			destination = ContainerDestination.ToGo;
 		}
 		else if(name == ContainerName.ColdCupForHere) {
-			Temperature = ContainerTemperature.Cold;
-			Destination = ContainerDestination.ForHere;
+			temperature = ContainerTemperature.Cold;
+			destination = ContainerDestination.ForHere;
 		}
 		else if(name == ContainerName.ColdCupToGo) {
-			Temperature = ContainerTemperature.Cold;
-			Destination = ContainerDestination.ToGo;
+			temperature = ContainerTemperature.Cold;
+			destination = ContainerDestination.ToGo;
 		}
 	}
 
 	public string GetNameText() {
-		return SpaceCamelCase(Name.ToString());
+		return SpaceCamelCase(name.ToString());
 	}
 
 	public string GetTemperatureText() {
-		return SpaceCamelCase(Temperature.ToString());
+		return SpaceCamelCase(temperature.ToString());
 	}
 
 	public string GetDestinationText() {
-		return SpaceCamelCase(Destination.ToString());
+		return SpaceCamelCase(destination.ToString());
 	}
 
 	private string SpaceCamelCase(string input) {
@@ -44,7 +53,8 @@ public class Container {
 }
 
 public enum ContainerName {
-	HotCupForHere, HotCupToGo, ColdCupForHere, ColdCupToGo
+	HotCupForHere, HotCupToGo, 
+	ColdCupForHere, ColdCupToGo
 }
 
 public enum ContainerTemperature {

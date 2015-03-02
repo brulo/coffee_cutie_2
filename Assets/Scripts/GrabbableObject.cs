@@ -14,7 +14,7 @@ public class GrabbableObject : MonoBehaviour {
 			Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Vector3 newPosition = mousePosition - mouseOffset;
 			newPosition.z = 0f;
-			gameObject.transform.position = newPosition;
+			gameObject.rigidbody2D.MovePosition(newPosition);
 		}
 	}
 
@@ -30,7 +30,14 @@ public class GrabbableObject : MonoBehaviour {
 
 	void OnMouseDown() {
 		isHeld = true;
-		// Get mouse offset.
+		GetMouseOffset();
+	}
+
+	void OnMouseUp() {
+		isHeld = false;
+	}
+
+	void GetMouseOffset() {
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector3 currentPosition = gameObject.transform.position;
 		mouseOffset = new Vector3(mousePosition.x - currentPosition.x,
@@ -38,7 +45,4 @@ public class GrabbableObject : MonoBehaviour {
 															mousePosition.z - currentPosition.z);
 	}
 
-	void OnMouseUp() {
-		isHeld = false;
-	}
 }

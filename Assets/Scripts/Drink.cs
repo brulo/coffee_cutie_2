@@ -23,7 +23,7 @@ public class Drink {
 	}
 
 	public void AddIngredient(Ingredient ingredient) {
-		Debug.Log("Adding" + ingredient.GetNameText());
+		Debug.Log("Adding " + ingredient.GetNameText());
 		ingredients.Add(ingredient);
 		typeCounts[(int)ingredient.Type] += 1;
 		ingredientCounts[(int)ingredient.Name] += 1;
@@ -33,7 +33,26 @@ public class Drink {
 		return typeCounts[(int)type];
 	}
 
-	public string RecipeText() {
+	// Counts all milk types together
+	public string RecipeBookText() {
+		string output = drinkName + "\n";
+		foreach(IngredientName ingredientName in IngredientName.GetValues(typeof(IngredientName))) {
+			Ingredient tempIngredient = new Ingredient(ingredientName);
+			int ingredientCount = ingredientCounts[(int)ingredientName];
+			if(ingredientCount > 0) {
+				output += "- " + tempIngredient.GetNameText();
+				if(ingredientCount > 1) {
+					output += " x " + ingredientCount;
+				}
+				output += "\n";
+			}
+		}
+		output += "- " + container.GetTemperatureText(); 
+		return output;
+	}
+
+	// Prints out all amounts of all ingredients (probably just for debugging)
+	public string SpecificRecipeText() {
 		string output = drinkName + "\n";
 		foreach(IngredientName ingredientName in IngredientName.GetValues(typeof(IngredientName))) {
 			Ingredient tempIngredient = new Ingredient(ingredientName);

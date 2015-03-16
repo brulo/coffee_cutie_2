@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PourableDispenser : StationaryDispenser {
 	public float tiltSpeed = 100f;
-	public float timeBetweenDispenses = 0.5f; 
+	public float timeBetweenDispenses = 0.8f; 
 
 	private bool isTilting = false;
 	private bool isUntilting = false;

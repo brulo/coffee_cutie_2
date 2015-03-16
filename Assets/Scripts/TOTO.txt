@@ -1,4 +1,0 @@
-TODO:
-
-- Make ingreident text name a property.
-

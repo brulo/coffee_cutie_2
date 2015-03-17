@@ -9,7 +9,7 @@ public class CursorHandler : MonoBehaviour {
 	public Sprite grabSprite;
 
 	void Start() {
-		Screen.showCursor = false;
+		Cursor.visible = false;
 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.sprite = regularSprite;

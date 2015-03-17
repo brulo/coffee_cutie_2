@@ -14,7 +14,7 @@ public class GrabbableObject : MonoBehaviour {
 			Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Vector3 newPosition = mousePosition - mouseOffset;
 			newPosition.z = 0f;
-			gameObject.rigidbody2D.MovePosition(newPosition);
+			gameObject.GetComponent<Rigidbody2D>().MovePosition(newPosition);
 		}
 	}
 

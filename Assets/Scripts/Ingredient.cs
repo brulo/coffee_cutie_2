@@ -4,9 +4,12 @@ using UnityEngine;
 public class Ingredient {
 	private IngredientType type;
 	private IngredientName name;
+	private string nameText;
+	private string typeText;
 	public IngredientType Type { get { return type; } }
 	public IngredientName Name { get { return name; } }
-
+	public string NameText { get { return nameText; } }
+	public string TypeText { get { return typeText; } }
 
 	// Create specific ingredient.
 	public Ingredient(IngredientName n) {
@@ -19,6 +22,8 @@ public class Ingredient {
 				type = IngredientType.Syrup;
 			}
 		}
+		nameText = SpaceCamelCase(Name.ToString());
+		typeText = SpaceCamelCase(Type.ToString());
 	}
 
 	// Given an ingredient type, get a random ingredient of that type.
@@ -32,14 +37,8 @@ public class Ingredient {
 			name = (IngredientName)Random.Range((int)IngredientName.RegularSyrup,
 																					(int)IngredientName.MochaSyrup);
 		}
-	}
-	
-	public string GetTypeText() {
-		return Type.ToString();
-	}
-
-	public string GetNameText() {
-		return SpaceCamelCase(Name.ToString());
+		nameText = SpaceCamelCase(Name.ToString());
+		typeText = SpaceCamelCase(Type.ToString());
 	}
 
 	private string SpaceCamelCase(string input) {

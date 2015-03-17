@@ -1,4 +1,3 @@
 TODO:
 
-- Make ingreident text name a property.
 - Fix up layer order (use named sorting layers).

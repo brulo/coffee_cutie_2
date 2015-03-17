@@ -23,7 +23,7 @@ public class Drink {
 	}
 
 	public void AddIngredient(Ingredient ingredient) {
-		Debug.Log("Adding " + ingredient.GetNameText());
+		Debug.Log("Adding " + ingredient.NameText);
 		ingredients.Add(ingredient);
 		typeCounts[(int)ingredient.Type] += 1;
 		ingredientCounts[(int)ingredient.Name] += 1;
@@ -40,7 +40,7 @@ public class Drink {
 			Ingredient tempIngredient = new Ingredient(ingredientName);
 			int ingredientCount = ingredientCounts[(int)ingredientName];
 			if(ingredientCount > 0) {
-				output += "- " + tempIngredient.GetNameText();
+				output += "- " + tempIngredient.NameText;
 				if(ingredientCount > 1) {
 					output += " x " + ingredientCount;
 				}
@@ -58,7 +58,7 @@ public class Drink {
 			Ingredient tempIngredient = new Ingredient(ingredientName);
 			int ingredientCount = ingredientCounts[(int)ingredientName];
 			if(ingredientCount > 0) {
-				output += "- " + tempIngredient.GetNameText();
+				output += "- " + tempIngredient.NameText;
 				if(ingredientCount > 1) {
 					output += " x " + ingredientCount;
 				}

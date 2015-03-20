@@ -14,9 +14,9 @@ public class Droplet : MonoBehaviour {
 			Debug.Log("Droplet hit counter!");
 			Destroy(this.gameObject);
 		}
-		/* else if(col.gameObject != gameObject){ */
-		/* 	Debug.Log("Droplet hit something! (Not drink or counter)"); */
-		/* 	Destroy(this.gameObject); */
-		/* } */
+		else {
+			Debug.Log("Droplet hit something! (Not drink or counter)");
+			Destroy(this.gameObject);
+		}
 	}
 }

@@ -12,9 +12,9 @@ public class PourableDispenser : StationaryDispenser {
 	private Quaternion pouringRotation = Quaternion.Euler(0, 0, 90);
 	private float lastDispenseTime; 
 
-	/* protected override void Start() { */
-	/* 	base.Start(); */
-	/* } */
+	protected override void Start() {
+		base.Start();
+	}
 
 	void FixedUpdate() {
 		if(isTilting) {

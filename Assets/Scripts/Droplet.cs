@@ -6,6 +6,7 @@ public class Droplet : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag == "Drink") { 
+			Debug.Log("Droplet hit drink!");
 			col.gameObject.GetComponent<DrinkForCustomer>().drink.AddIngredient(ingredient);
 			Destroy(this.gameObject);
 		}
@@ -13,6 +14,9 @@ public class Droplet : MonoBehaviour {
 			Debug.Log("Droplet hit counter!");
 			Destroy(this.gameObject);
 		}
+		/* else if(col.gameObject != gameObject){ */
+		/* 	Debug.Log("Droplet hit something! (Not drink or counter)"); */
+		/* 	Destroy(this.gameObject); */
+		/* } */
 	}
-
 }

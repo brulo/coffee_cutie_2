@@ -5,13 +5,20 @@ using System.Collections.Generic;
 public class Drink {
 	List<Ingredient> ingredients = new List<Ingredient>();
 	Container container;
-	int[] typeCounts;
-	int[] ingredientCounts;
-	string drinkName;
+	private int[] typeCounts;
+	private int[] ingredientCounts;
+	private string name;
+	public string Name { get { return name; } }
+	
 
-	public Drink(ContainerName c, string name) {
-		container = new Container(c);
-		drinkName = name;
+	public Drink(ContainerName container, 
+							 List<Ingredient> ingredients,
+							 string name) {
+		foreach(Ingredient ingredient in ingredients)
+			AddIngredient(ingredient);
+
+		this.container = new Container(container);
+		this.name = name;
 
 		typeCounts = new int[IngredientType.GetValues(typeof(IngredientType)).Length];
 		for(int i = 0; i < typeCounts.Length; i++) 
@@ -21,6 +28,16 @@ public class Drink {
 		for(int i = 0; i < ingredientCounts.Length; i++)
 			ingredientCounts[i] = 0;
 	}
+
+	public Drink(ContainerName container, 
+							 string name) : this(container, new List<Ingredient>(), name){ 
+	}
+
+	public Drink(ContainerName container) : this(container, 
+																							 new List<Ingredient>(), 
+																							 ""){
+	}
+
 
 	public void AddIngredient(Ingredient ingredient) {
 		Debug.Log("Adding " + ingredient.NameText);
@@ -35,7 +52,7 @@ public class Drink {
 
 	// Counts all milk types together
 	public string RecipeBookText() {
-		string output = drinkName + "\n";
+		string output = name + "\n";
 		foreach(IngredientName ingredientName in IngredientName.GetValues(typeof(IngredientName))) {
 			Ingredient tempIngredient = new Ingredient(ingredientName);
 			int ingredientCount = ingredientCounts[(int)ingredientName];
@@ -53,7 +70,7 @@ public class Drink {
 
 	// Prints out all amounts of all ingredients (probably just for debugging)
 	public string SpecificRecipeText() {
-		string output = drinkName + "\n";
+		string output = name + "\n";
 		foreach(IngredientName ingredientName in IngredientName.GetValues(typeof(IngredientName))) {
 			Ingredient tempIngredient = new Ingredient(ingredientName);
 			int ingredientCount = ingredientCounts[(int)ingredientName];

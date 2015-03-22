@@ -11,13 +11,13 @@ public class Drink {
 	public string Name { get { return name; } }
 	
 
-	public Drink(ContainerName container, 
+	public Drink(Container container, 
 							 List<Ingredient> ingredients,
 							 string name) {
 		foreach(Ingredient ingredient in ingredients)
 			AddIngredient(ingredient);
 
-		this.container = new Container(container);
+		this.container = container;
 		this.name = name;
 
 		typeCounts = new int[IngredientType.GetValues(typeof(IngredientType)).Length];
@@ -29,13 +29,14 @@ public class Drink {
 			ingredientCounts[i] = 0;
 	}
 
-	public Drink(ContainerName container, 
-							 string name) : this(container, new List<Ingredient>(), name){ 
+	public Drink(Container container, string name) : this(container, 
+																												new List<Ingredient>(), 
+																												name){ 
 	}
 
-	public Drink(ContainerName container) : this(container, 
-																							 new List<Ingredient>(), 
-																							 ""){
+	public Drink(Container container) : this(container, 
+																					 new List<Ingredient>(), 
+																					 ""){
 	}
 
 

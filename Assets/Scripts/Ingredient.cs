@@ -48,6 +48,7 @@ public class Ingredient {
 	}
 
 	private string SpaceCamelCase(string input) {
+		// thanks, internet
 		return Regex.Replace(input, "(\\B[A-Z])", " $1");
 	}
 }

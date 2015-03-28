@@ -59,40 +59,4 @@ public class Drink {
 	public int TypeCount(IngredientType type) {
 		return typeCounts[(int)type];
 	}
-
-	// Counts all milk types together
-	/* public string RecipeBookText() { */
-	/* 	string output = name + "\n"; */
-	/* 	foreach(IngredientName ingredientName in IngredientName.GetValues(typeof(IngredientName))) { */
-	/* 		Ingredient tempIngredient = new Ingredient(ingredientName); */
-	/* 		int ingredientCount = ingredientCounts[(int)ingredientName]; */
-	/* 		if(ingredientCount > 0) { */
-	/* 			output += "- " + tempIngredient.NameText; */
-	/* 			if(ingredientCount > 1) { */
-	/* 				output += " x " + ingredientCount; */
-	/* 			} */
-	/* 			output += "\n"; */
-	/* 		} */
-	/* 	} */
-	/* 	output += "- " + container.GetTemperatureText(); */ 
-	/* 	return output; */
-	/* } */
-
-	/* // Prints out all amounts of all ingredients (probably just for debugging) */
-	/* public string SpecificRecipeText() { */
-	/* 	string output = name + "\n"; */
-	/* 	foreach(IngredientName ingredientName in IngredientName.GetValues(typeof(IngredientName))) { */
-	/* 		Ingredient tempIngredient = new Ingredient(ingredientName); */
-	/* 		int ingredientCount = ingredientCounts[(int)ingredientName]; */
-	/* 		if(ingredientCount > 0) { */
-	/* 			output += "- " + tempIngredient.NameText; */
-	/* 			if(ingredientCount > 1) { */
-	/* 				output += " x " + ingredientCount; */
-	/* 			} */
-	/* 			output += "\n"; */
-	/* 		} */
-	/* 	} */
-	/* 	output += "- " + container.GetTemperatureText(); */ 
-	/* 	return output; */
-	/* } */
 }

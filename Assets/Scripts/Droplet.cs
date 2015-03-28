@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Droplet : MonoBehaviour {
 	public Ingredient ingredient;
+	public float uprightThreshold = 5f;
 
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag == "Drink") { 
@@ -10,7 +11,7 @@ public class Droplet : MonoBehaviour {
 			Quaternion uprightRotation = Quaternion.Euler(0, 0, 0);
 			float angleFromUpright = Quaternion.Angle(uprightRotation,
 																								drinkRotation);
-			if( (angleFromUpright > -5f) & (angleFromUpright < 5f) ) {
+			if( (angleFromUpright > -uprightThreshold) & (angleFromUpright < uprightThreshold) ) {
 				Debug.Log("Droplet hit drink!");
 				col.gameObject.GetComponent<DrinkForCustomer>().drink.AddIngredient(ingredient);
 				Destroy(this.gameObject);
@@ -18,10 +19,6 @@ public class Droplet : MonoBehaviour {
 		}
 		else if(col.gameObject.tag == "Counter") {
 			Debug.Log("Droplet hit counter!");
-			Destroy(this.gameObject);
-		}
-		else {
-			Debug.Log("Droplet hit something! (Not drink or counter)");
 			Destroy(this.gameObject);
 		}
 	}

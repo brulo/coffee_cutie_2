@@ -1,3 +1,4 @@
+// Requires RotatableObject and RotatableObject.
 using UnityEngine;
 using System.Collections;
 
@@ -9,51 +10,44 @@ public class PourableDispenser : StationaryDispenser {
 	private bool isUntilting = false;
 	private bool isPouring = false;
 	private Quaternion defaultRotation = Quaternion.Euler(0, 0, 0);
-	private Quaternion pouringRotation = Quaternion.Euler(0, 0, 90);
+	private Quaternion pourRotation = Quaternion.Euler(0, 0, 90);
 	private float lastDispenseTime; 
+
+	private RotatableObject rotatable;
+	private GrabbableObject grabbable;
 
 	protected override void Start() {
 		base.Start();
+		rotatable = GetComponent<RotatableObject>();
+		grabbable = GetComponent<GrabbableObject>();
 	}
 
 	void FixedUpdate() {
-		if(isTilting) {
-			DoRotateTowards(pouringRotation);
-			if(IsDoneRotatingTowards(pouringRotation)) {
-				isTilting = false;
-				StartPouring();
+		if(grabbable.IsHeld) {
+			rotatable.RotateTowardDesired = true;
+			if(isTilting) {
+				if(rotatable.CurrentAngleFromDesired == 0) {
+					isTilting = false;
+					StartPouring();
+				}
+			}
+			if(isUntilting) {
+				if(rotatable.CurrentAngleFromDesired == 0) {
+					isUntilting = false;
+				}
+			}
+			if(isPouring) {
+				float timeElapsed = Time.time - lastDispenseTime;
+				if(timeElapsed >= timeBetweenDispenses)
+					Pour();
 			}
 		}
-		if(isUntilting) {
-			DoRotateTowards(defaultRotation);
-			if(IsDoneRotatingTowards(defaultRotation)) {
-				isUntilting = false;
-			}
-		}
-		if(isPouring) {
-			float timeElapsed = Time.time - lastDispenseTime;
-			if(timeElapsed >= timeBetweenDispenses)
-				Pour();
-		}
+		else 
+			rotatable.RotateTowardDesired = false;
 	}
 	
-	private void DoRotateTowards(Quaternion desiredRotation) {
-		float step = tiltSpeed * Time.deltaTime;
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, 
-																									desiredRotation, 
-																									step);
-	}
-
-	private bool IsDoneRotatingTowards(Quaternion desiredRotation) {
-			float currentAngle = Quaternion.Angle(desiredRotation, 
-																						gameObject.transform.rotation);
-			if(currentAngle <=0) 
-				return true;
-			else 
-				return false;
-	}
-
 	private void StartTilting() {
+		rotatable.DesiredRotation = pourRotation;
 		isUntilting = false;
 		isPouring = false;
 		isTilting = true;
@@ -61,6 +55,7 @@ public class PourableDispenser : StationaryDispenser {
 	}
 
 	private void StartUntilting() {
+		rotatable.DesiredRotation = defaultRotation;
 		isTilting = false;
 		isPouring = false;
 		isUntilting = true;
@@ -87,9 +82,5 @@ public class PourableDispenser : StationaryDispenser {
 	void OnTriggerExit2D(Collider2D col) {
 		if(col.gameObject.tag == "Pour Zone")
 			StartUntilting();	
-	}
-
-	void OnMouseUp() {
-		StartUntilting();
 	}
 }

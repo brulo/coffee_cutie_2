@@ -3,18 +3,25 @@ using System.Collections;
 
 public class GrabbableObject : MonoBehaviour {
 	private bool isHeld = false;
+	public bool IsHeld { get { return isHeld; } }
 	private Vector3 mouseOffset;
 
 	public delegate void Trigger();
 	public static event Trigger MouseEnter;
 	public static event Trigger MouseExit;
+	private Rigidbody2D rigidBody;
+			
+	
+	void Start() {
+		rigidBody = GetComponent<Rigidbody2D>();
+	}
 
 	void FixedUpdate() {
 		if(isHeld) {
 			Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Vector3 newPosition = mousePosition - mouseOffset;
 			newPosition.z = 0f;
-			gameObject.GetComponent<Rigidbody2D>().MovePosition(newPosition);
+			rigidBody.MovePosition(newPosition);
 		}
 	}
 

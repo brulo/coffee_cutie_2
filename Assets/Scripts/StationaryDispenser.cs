@@ -12,6 +12,7 @@ public class StationaryDispenser : MonoBehaviour {
 	}	
 
 	public void Dispense() {
+		Debug.Log("Dispensing droplet");
 		Vector3 spawnPosition = spawnOffset + gameObject.transform.position;
 		Droplet droplet = Instantiate(dropletPrefab, spawnPosition, Quaternion.identity) as Droplet;
 		Physics2D.IgnoreCollision(droplet.GetComponent<Collider2D>(), 

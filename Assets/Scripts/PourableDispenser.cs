@@ -83,4 +83,10 @@ public class PourableDispenser : StationaryDispenser {
 		if(col.gameObject.tag == "Pour Zone")
 			StartUntilting();	
 	}
+
+	void OnMouseUp() {
+		isTilting = false;
+		isPouring = false;
+		isUntilting = false;
+	}
 }

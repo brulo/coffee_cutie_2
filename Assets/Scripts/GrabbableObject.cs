@@ -36,11 +36,13 @@ public class GrabbableObject : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+		rigidBody.fixedAngle = true;
 		isHeld = true;
 		GetMouseOffset();
 	}
 
 	void OnMouseUp() {
+		rigidBody.fixedAngle = false;
 		isHeld = false;
 	}
 

@@ -13,9 +13,10 @@ public class RotatableObject : MonoBehaviour {
 		set { rotateSpeed = value; }
 	}
 
-	private float currentAngleFromDesired;
 	public float CurrentAngleFromDesired { 
-		get { return currentAngleFromDesired; } 
+		get { return Quaternion.Angle(desiredRotation, 
+																  gameObject.transform.rotation);
+		} 
 	}
 
 	private bool rotateTowardDesired = false;
@@ -29,10 +30,8 @@ public class RotatableObject : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		currentAngleFromDesired = Quaternion.Angle(desiredRotation, 
-																							 gameObject.transform.rotation);
 		if(rotateTowardDesired) {
-			if(currentAngleFromDesired != 0) {
+			if(CurrentAngleFromDesired != 0) {
 				float step = rotateSpeed * Time.deltaTime;
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, 
 																											desiredRotation, 

@@ -24,10 +24,7 @@ public class RotatableObject : MonoBehaviour {
 		set { rotateTowardDesired = value; }
 	}
 
-	private Rigidbody2D rigidBody;
-
 	void Start() {
-		rigidBody = GetComponent<Rigidbody2D>();
 		desiredRotation = gameObject.transform.rotation;
 	}
 

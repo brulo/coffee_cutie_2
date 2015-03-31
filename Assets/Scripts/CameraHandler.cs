@@ -6,6 +6,7 @@ public class CameraHandler : MonoBehaviour {
 	private int currentScreen = 0;
 	private Vector3[] screenPositions;
 	private bool isMoving = false;
+	public bool IsMoving { get { return isMoving; } }
 	private Vector3 lerpStartPosition;
 	private Vector3 lerpEndPosition;
 	public float lerpTime = 0.5f;

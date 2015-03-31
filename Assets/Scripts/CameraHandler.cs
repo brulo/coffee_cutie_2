@@ -2,15 +2,13 @@ using UnityEngine;
 using System.Collections;
 
 public class CameraHandler : MonoBehaviour {
-	public int numberOfScreens = 2;
+	private int numberOfScreens = 2;
 	private int currentScreen = 0;
-	private float xMoveAmount;
+	private Vector3[] screenPositions;
 	private bool isMoving = false;
-
 	private Vector3 lerpStartPosition;
 	private Vector3 lerpEndPosition;
-
-	private float lerpTime = 1f;
+	public float lerpTime = 0.5f;
 	private float currentLerpTime;
 
 	void Start() {
@@ -18,10 +16,18 @@ public class CameraHandler : MonoBehaviour {
 																						 Screen.height, 0);
 		Vector3 dimsInWorldPoint = Camera.main.ScreenToWorldPoint(
 				screenDimsInPixels);
-		xMoveAmount = dimsInWorldPoint.x * 2;
+		float xMoveAmount = dimsInWorldPoint.x * 2;
+
+		screenPositions = new Vector3[numberOfScreens];
+		for(int i = 0; i < screenPositions.Length; i++) {
+			Vector3 currentPosition = transform.position;
+			Vector3 newPosition = currentPosition;
+			newPosition.x = newPosition.x + (xMoveAmount * i);
+			screenPositions[i] = newPosition;
+		}
 	}
 
-	void Update() {
+	void FixedUpdate() {
 		if(isMoving) {
 			bool finishedLerping = LerpIt();
 			if(finishedLerping) {
@@ -43,7 +49,6 @@ public class CameraHandler : MonoBehaviour {
 		transform.position = Vector3.Lerp(lerpStartPosition, 
 																			lerpEndPosition, 
 																			progress);
-
 		return finishedLerping;
 	}
 
@@ -52,18 +57,12 @@ public class CameraHandler : MonoBehaviour {
 		Debug.Log("newScreen " + newScreen);
 		if( (newScreen > -1) && (newScreen < numberOfScreens) ) {
 			Debug.Log("Begin moving to screen " + newScreen);
+			currentLerpTime = 0f;
+			lerpStartPosition = transform.position;
+			lerpEndPosition = screenPositions[newScreen];
 
 			currentScreen = newScreen;
 			isMoving = true;
-
-			currentLerpTime = 0f;
-
-			lerpStartPosition = transform.position;
-
-			Vector3 currentPosition = transform.position;
-			Vector3 newPosition = currentPosition;
-			newPosition.x = newPosition.x + (xMoveAmount * screensToMove);
-			lerpEndPosition = newPosition;
 		}
 	}
 }

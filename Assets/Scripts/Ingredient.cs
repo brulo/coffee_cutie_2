@@ -23,6 +23,9 @@ public class Ingredient {
 	  else if((int)name >= (int)IngredientName.HotCup) 
 			if((int)name <= (int)IngredientName.ColdCup)
 				type = IngredientType.Cup;
+	  else if((int)name >= (int)IngredientName.RegularCoffee)
+			if((int)name <= (int)IngredientName.Espresso)
+				type = IngredientType.Cup;
 
 		nameText = SpaceCamelCase(Name.ToString());
 		typeText = SpaceCamelCase(Type.ToString());
@@ -43,6 +46,11 @@ public class Ingredient {
 			name = (IngredientName)Random.Range((int)IngredientName.HotCup,
 																					(int)IngredientName.ColdCup);
 		}
+		else if (t == IngredientType.Coffee) {
+			name = (IngredientName)Random.Range((int)IngredientName.RegularCoffee,
+																					(int)IngredientName.Espresso);
+		}
+
 		nameText = SpaceCamelCase(Name.ToString());
 		typeText = SpaceCamelCase(Type.ToString());
 	}
@@ -56,11 +64,13 @@ public class Ingredient {
 public enum IngredientType {
 	Milk,
 	Syrup,
-	Cup
+	Cup,
+	Coffee
 }
 
 public enum IngredientName {
 	TwoPercentMilk, NonFatMilk, SoyMilk,
 	RegularSyrup, VanillaSyrup, MochaSyrup,
-	HotCup, ColdCup
+	HotCup, ColdCup,
+	RegularCoffee, Espresso
 }

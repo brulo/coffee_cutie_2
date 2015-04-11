@@ -10,7 +10,6 @@ public class ScreenBoundry : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D(Collider2D col) {
-		Debug.Log("trigger enter");
 		GrabbableObject grabbableObject;
 		grabbableObject = col.gameObject.GetComponent<GrabbableObject>();
 		if(grabbableObject != null) {

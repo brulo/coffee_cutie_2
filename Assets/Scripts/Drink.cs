@@ -3,60 +3,94 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Drink {
-	List<Ingredient> ingredients = new List<Ingredient>();
-	private bool hasCup = false;
-	private int[] typeCounts;
-	private int[] ingredientCounts;
+	private List<Ingredient> ingredients = new List<Ingredient>();
+	private Ingredient cup;
 	private string name;
+	private int ingredientLimit;
 	public string Name { get { return name; } }
+
+	public List<Ingredient> Ingredients {
+		get {
+			List<Ingredient> allIngredients = ingredients;
+			allIngredients.Add(cup);
+			return allIngredients;
+		}
+	}
+
+	public int[] IngredientTypeCounts {
+		get {
+			int[] typeCounts = new int[IngredientType.GetValues(
+					typeof(IngredientType)).Length];
+			for(int i = 0; i < typeCounts.Length; i++) {
+				typeCounts[i] = 0;
+			}
+			foreach(Ingredient ingredient in ingredients) { 
+				typeCounts[(int)ingredient.Type] += 1;
+			}
+			return typeCounts;
+		}
+	}
+
+	public int[] IngredientNameCounts {
+		get {
+			int[] nameCounts = new int[IngredientName.GetValues(
+					typeof(IngredientName)).Length];
+			for(int i = 0; i < nameCounts.Length; i++) {
+				nameCounts[i] = 0;
+			}
+			foreach(Ingredient ingredient in ingredients) { 
+				nameCounts[(int)ingredient.Name] += 1;
+			}
+			return nameCounts;
+		}
+	}
 	
 	public Drink(Ingredient cup, 
 							 List<Ingredient> ingredients,
-							 string name) {
-		// Initialize counting arrays.
-		typeCounts = new int[IngredientType.GetValues(typeof(IngredientType)).Length];
-		for(int i = 0; i < typeCounts.Length; i++) 
-			typeCounts[i] = 0;
-		ingredientCounts = new int[IngredientName.GetValues(typeof(IngredientName)).Length];
-		for(int i = 0; i < ingredientCounts.Length; i++)
-			ingredientCounts[i] = 0;
-
-		AddIngredient(cup);
-
-		foreach(Ingredient ingredient in ingredients)
+							 string name,
+							 int ingredientLimit) {
+		this.cup = cup;
+		foreach(Ingredient ingredient in ingredients) {
 			AddIngredient(ingredient);
-
+		}
 		this.name = name;
+		this.ingredientLimit = ingredientLimit;
 	}
+	
+	public Drink(Ingredient cup, 
+							 List<Ingredient> ingredients, 
+							 string name) : this(cup, 
+																	 new List<Ingredient>(), 
+																	 name,
+																	 0) {}
 
-	public Drink(Ingredient cup, string name) : this(cup, 
-																									 new List<Ingredient>(), 
-																									 name) {}
+	public Drink(Ingredient cup, 
+							 int ingredientLimit) : this(cup, 
+																					 new List<Ingredient>(), 
+																					 "",
+																					 ingredientLimit) {}
+	public Drink(Ingredient cup, 
+							 string name) : this(cup, 
+																	 new List<Ingredient>(), 
+																	 name,
+																	 0) {}
 
 	public Drink(Ingredient cup) : this(cup, 
 																		  new List<Ingredient>(), 
-																		  "") {}
+																		  "",
+																			0) {}
+
+	public void RemoveAllIngredients() {
+		ingredients = new List<Ingredient>();
+	}
 
 	public void AddIngredient(Ingredient ingredient) {
-		if((!hasCup) && (ingredient.Type != IngredientType.Cup)) 
-			Debug.Log("Can't add ingredient, drink doesn't have a cup");
+		if(ingredientLimit > 0 && ingredients.Count > ingredientLimit) {
+			Debug.Log("Can't add any more ingredients to drink!");
+		}
 		else {
 			Debug.Log("Adding " + ingredient.NameText);
 			ingredients.Add(ingredient);
-			if(ingredient.Type == IngredientType.Cup)
-				hasCup = true;
-			else {
-				typeCounts[(int)ingredient.Type] += 1;
-				ingredientCounts[(int)ingredient.Name] += 1;
-			}
 		}
-	}
-		
-	public int IngredientCount(IngredientName ingredientName) {
-		return ingredientCounts[(int)ingredientName];
-	}
-
-	public int TypeCount(IngredientType type) {
-		return typeCounts[(int)type];
 	}
 }

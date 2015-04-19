@@ -59,20 +59,20 @@ public class Recipe {
 		}
 	}
 
-	// fuckin hax
 	public string RecipeBookText {
 		get {
 			string text = name + "\n\n";
 
-			text += "- " + new Ingredient(cup).Name + "\n";
+			text += "- " + new Ingredient(cup).NameText + "\n";
 			
 			foreach(IngredientName ingName in System.Enum.GetValues(
 						typeof(IngredientName))) {
 				int specificCount = specificCounts[(int)ingName];
 				if(specificCount > 0) {
-						text += "- " + new Ingredient(ingName).Name;
+						text += "- " + new Ingredient(ingName).NameText;
 					if(specificCount > 1) 
 						text += " x " + specificCount;
+					text += "\n";
 				}
 			}
 
@@ -91,7 +91,4 @@ public class Recipe {
 		}
 	}
 
-	private string SpaceCamelCase(string input) {
-		return Regex.Replace(input, "(\\B[A-Z])", " $1");
-	}
 }

@@ -2,7 +2,7 @@ using System.Collections;
 
 public class RecipeBook {
 	private Recipe[] allRecipes = new Recipe[] {
-		GlassOfMilk, GlassOfRegularSyrup 
+		GlassOfMilk, GlassOfRegularSyrup, ChocolateMilk
 	};
 	public Recipe[] AllRecipes { get { return allRecipes; } }
 
@@ -37,6 +37,27 @@ public class RecipeBook {
 			};
 
 			Recipe recipe = new Recipe("Glass of Syrup",
+																 cup,
+																 ingredientTypes,
+																 specificIngredients);
+			return recipe;
+		}
+	}
+	
+	public static Recipe ChocolateMilk {
+		get {
+			IngredientName cup = IngredientName.ColdCup;
+
+			IngredientType[] ingredientTypes = new IngredientType[] { 
+				IngredientType.Milk, IngredientType.Milk 
+
+			};
+
+			IngredientName[] specificIngredients = new IngredientName[] { 
+				IngredientName.MochaSyrup, IngredientName.MochaSyrup 
+			};
+
+			Recipe recipe = new Recipe("Chocolate Milk",
 																 cup,
 																 ingredientTypes,
 																 specificIngredients);

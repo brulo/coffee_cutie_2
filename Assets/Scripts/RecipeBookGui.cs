@@ -20,7 +20,7 @@ public class RecipeBookGui : MonoBehaviour {
 		int numPagesToTurn = numPageTurns * 2;
 		int newPageIndex = leftPageIndex + numPagesToTurn;
 
-		if((newPageIndex > 0) & (newPageIndex < recipeBook.AllRecipes.Length)) {
+		if((newPageIndex >= 0) & (newPageIndex < recipeBook.AllRecipes.Length)) {
 			leftPageIndex = newPageIndex;
 			leftPageText.text = recipeBook.AllRecipes[leftPageIndex].RecipeBookText;
 

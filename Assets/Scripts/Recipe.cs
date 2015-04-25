@@ -5,8 +5,11 @@ using System.Text.RegularExpressions;
 
 public class Recipe {
 	string name;
+	public string Name { get { return name; } }
 	private int[] typeCounts;
 	private int[] specificCounts;
+	public Drink drink;
+	public List<Ingredient> specificsForCustomerOrder;
 	
 	IngredientName cup;
 	
@@ -32,31 +35,32 @@ public class Recipe {
 			typeCounts[(int)ingredientTypes[i]] += 1;
 		for(int i = 0; i < specificIngredients.Length; i++)
 			specificCounts[(int)specificIngredients[i]] += 1;
+
+		InitializeDrink();
 	}
 
-	public Drink RecipeDrink { 
+	public void InitializeDrink() {
+		List<Ingredient> ingredients = new List<Ingredient>();
+		specificsForCustomerOrder = new List<Ingredient>();
 
-		get {
-			List<Ingredient> ingredients = new List<Ingredient>();
-
-			foreach(IngredientType ingType in System.Enum.GetValues(
-						typeof(IngredientType))) {
-				Ingredient ing = new Ingredient(ingType);
-				for(int i = 0; i < typeCounts[(int)ingType]; i++)
-					ingredients.Add(ing);
-			}
-
-			foreach(IngredientName ingName in System.Enum.GetValues(
-						typeof(IngredientName))) {
-				for(int i = 0; i < specificCounts[(int)ingName]; i++)
-					ingredients.Add(new Ingredient(ingName));
-			}
-
-			Drink drink = new Drink(new Ingredient(cup),
-															ingredients,
-															name);
-			return drink;
+		foreach(IngredientType ingType in System.Enum.GetValues(
+					typeof(IngredientType))) {
+			Ingredient ing = new Ingredient(ingType);
+			for(int i = 0; i < typeCounts[(int)ingType]; i++)
+				if(i == 0) 
+					specificsForCustomerOrder.Add(ing);
+				ingredients.Add(ing);
 		}
+
+		foreach(IngredientName ingName in System.Enum.GetValues(
+					typeof(IngredientName))) {
+			for(int i = 0; i < specificCounts[(int)ingName]; i++)
+				ingredients.Add(new Ingredient(ingName));
+		}
+
+		drink = new Drink(new Ingredient(cup),
+											ingredients,
+											name);
 	}
 
 	public string RecipeBookText {

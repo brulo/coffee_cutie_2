@@ -41,6 +41,7 @@ public class Drink {
 			foreach(Ingredient ingredient in ingredients) { 
 				nameCounts[(int)ingredient.Name] += 1;
 			}
+			nameCounts[(int)cup.Name] += 1;
 			return nameCounts;
 		}
 	}
@@ -60,7 +61,7 @@ public class Drink {
 	public Drink(Ingredient cup, 
 							 List<Ingredient> ingredients, 
 							 string name) : this(cup, 
-																	 new List<Ingredient>(), 
+																	 ingredients, 
 																	 name,
 																	 0) {}
 

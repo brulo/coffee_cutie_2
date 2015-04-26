@@ -46,16 +46,19 @@ public class Recipe {
 		foreach(IngredientType ingType in System.Enum.GetValues(
 					typeof(IngredientType))) {
 			Ingredient ing = new Ingredient(ingType);
-			for(int i = 0; i < typeCounts[(int)ingType]; i++)
-				if(i == 0) 
+			for(int i = 0; i < typeCounts[(int)ingType]; i++) {
+				if(i == 0) {
 					specificsForCustomerOrder.Add(ing);
+				}
 				ingredients.Add(ing);
+			}
 		}
 
 		foreach(IngredientName ingName in System.Enum.GetValues(
 					typeof(IngredientName))) {
-			for(int i = 0; i < specificCounts[(int)ingName]; i++)
+			for(int i = 0; i < specificCounts[(int)ingName]; i++) {
 				ingredients.Add(new Ingredient(ingName));
+			}
 		}
 
 		drink = new Drink(new Ingredient(cup),

@@ -21,11 +21,11 @@ public class Ingredient {
 			if((int)name <= (int)IngredientName.MochaSyrup)
 				type = IngredientType.Syrup;
 	  else if((int)name >= (int)IngredientName.HotCup) 
-			if((int)name <= (int)IngredientName.ColdCup)
+			if((int)name <= (int)IngredientName.EspressoCup)
 				type = IngredientType.Cup;
 	  else if((int)name >= (int)IngredientName.RegularCoffee)
 			if((int)name <= (int)IngredientName.Espresso)
-				type = IngredientType.Cup;
+				type = IngredientType.Coffee;
 
 		nameText = SpaceCamelCase(Name.ToString());
 		typeText = SpaceCamelCase(Type.ToString());
@@ -71,6 +71,6 @@ public enum IngredientType {
 public enum IngredientName {
 	TwoPercentMilk, NonFatMilk, SoyMilk,
 	RegularSyrup, VanillaSyrup, MochaSyrup,
-	HotCup, ColdCup,
+	HotCup, ColdCup, EspressoCup,
 	RegularCoffee, Espresso
 }

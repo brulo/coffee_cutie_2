@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Drink {
 	private List<Ingredient> ingredients = new List<Ingredient>();
-	private Ingredient cup;
+	public Ingredient cup;
 	private string name;
 	private int ingredientLimit;
 	public string Name { get { return name; } }

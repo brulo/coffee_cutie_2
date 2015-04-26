@@ -1,3 +1,4 @@
+using UnityEngine;
 using System.Collections;
 
 public class RecipeBook {
@@ -6,6 +7,11 @@ public class RecipeBook {
 	};
 	public Recipe[] AllRecipes { 
 		get { return allRecipes; } 
+	}
+	public Recipe RandomRecipe {
+		get { 
+			return allRecipes[Random.Range(0, allRecipes.Length)]; 
+		} 
 	}
 
 	public static Recipe glassOfMilk = new Recipe("Glass of Milk",
@@ -17,7 +23,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe chocolateMilk = new Recipe("Glass of Milk",
+	public static Recipe chocolateMilk = new Recipe("Chocolate Milk",
 			IngredientName.ColdCup,
 			new IngredientType[] {
 				IngredientType.Milk 
@@ -27,7 +33,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe sweetMilk = new Recipe("Glass of Milk",
+	public static Recipe sweetMilk = new Recipe("Sweet Milk",
 			IngredientName.ColdCup,
 			new IngredientType[] {
 				IngredientType.Milk 

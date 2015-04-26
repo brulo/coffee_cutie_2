@@ -16,13 +16,12 @@ public class CustomerHandler : MonoBehaviour {
 
 	void Start() {
 		GetNewDrinkToMake();
-		Debug.Log(DrinkOrderText());
 	}	
 
 	void SubmitDrink(Drink drink) {
 		Debug.Log(CustomerResponse(drink));
 		if(CustomerResponse(drink) == "Perfect, thanks!") {
-			// add money or something
+			GetNewDrinkToMake();
 		}
 	}
 
@@ -30,6 +29,7 @@ public class CustomerHandler : MonoBehaviour {
 		recipeToMake = recipeBook.RandomRecipe;
 		// randomize the appropriate ingredients
 		recipeToMake.InitializeDrink(); 	
+		Debug.Log(DrinkOrderText());
 	}
 
 	public string DrinkOrderText() {
@@ -53,20 +53,21 @@ public class CustomerHandler : MonoBehaviour {
 		List<Ingredient> notEnough = new List<Ingredient>();
 		List<Ingredient> tooMuch = new List<Ingredient>();
 
+		bool hasCorrectCup = true;
+		if(drink.cup.Name != recipeToMake.drink.cup.Name) {
+			hasCorrectCup = false;
+		}
+
 		foreach(IngredientName ingName in System.Enum.GetValues(
 					typeof(IngredientName))) {
 			if(toMakeCount[(int)ingName] - drinkCount[(int)ingName] > 0) {
-				if(ingName != IngredientName.HotCup | 
-						ingName != IngredientName.ColdCup | 
-						ingName != IngredientName.EspressoCup) {
+				if(new Ingredient(ingName).Type != IngredientType.Cup) {
 					notEnough.Add(new Ingredient(ingName));
 				}
 			}
 			else if(toMakeCount[(int)ingName] - drinkCount[(int)ingName] < 0) {
 				if(toMakeCount[(int)ingName] == 0) {
-					if(ingName != IngredientName.HotCup | 
-							ingName != IngredientName.ColdCup | 
-							ingName != IngredientName.EspressoCup) {
+					if(new Ingredient(ingName).Type != IngredientType.Cup) {
 						didntWant.Add(new Ingredient(ingName));
 					}
 				}
@@ -78,9 +79,9 @@ public class CustomerHandler : MonoBehaviour {
 
 		// construct customer response string
 		if(didntWant.Count == 0 & 
-				notEnough.Count == 0 && 
-				tooMuch.Count == 0 & 
-				drink.cup != recipeToMake.drink.cup) {
+				notEnough.Count == 0 & 
+				tooMuch.Count == 0 &
+				hasCorrectCup == true) {
 			return "Perfect, thanks!";
 		}
 		else {
@@ -115,7 +116,7 @@ public class CustomerHandler : MonoBehaviour {
 						complaints += ", ";
 					}
 					else if(notEnough.Count - count > 0) {
-						complaints += " and ";
+						complaints += " or ";
 					}
 					else if(didntWant.Count > 0) {
 						complaints += ", ";
@@ -140,7 +141,7 @@ public class CustomerHandler : MonoBehaviour {
 				}
 			}
 			complaints += "! ";
-			if(drink.cup.Name != recipeToMake.drink.cup.Name) {
+			if(!hasCorrectCup) {
 				if(tooMuch.Count > 0 | notEnough.Count > 0 | didntWant.Count > 0) {
 					complaints += "Also, this is supposed to come in a ";
 				}
@@ -148,6 +149,7 @@ public class CustomerHandler : MonoBehaviour {
 					complaints += "This is supposed to come in a ";
 				}
 				complaints += recipeToMake.drink.cup.NameText.ToLower();
+				complaints += ". ";
 			}
 			return complaints;
 		}

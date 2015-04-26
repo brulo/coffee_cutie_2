@@ -10,6 +10,8 @@ public class Ingredient {
 	public IngredientName Name { get { return name; } }
 	public string TypeText { get { return typeText; } }
 	public string NameText { get { return nameText; } }
+	private bool isSingular = false;
+	public bool IsSingular { get { return isSingular; } }
 
 	// Create specific ingredient.
 	public Ingredient(IngredientName n) {
@@ -20,9 +22,12 @@ public class Ingredient {
 		else if((int)name >= (int)IngredientName.RegularSyrup) 
 			if((int)name <= (int)IngredientName.MochaSyrup)
 				type = IngredientType.Syrup;
-	  else if((int)name >= (int)IngredientName.HotCup) 
-			if((int)name <= (int)IngredientName.EspressoCup)
+	  else if((int)name >= (int)IngredientName.HotCup) {
+			if((int)name <= (int)IngredientName.EspressoCup) {
 				type = IngredientType.Cup;
+				isSingular = true;
+			}
+		}
 	  else if((int)name >= (int)IngredientName.RegularCoffee)
 			if((int)name <= (int)IngredientName.Espresso)
 				type = IngredientType.Coffee;
@@ -45,6 +50,7 @@ public class Ingredient {
 		else if (t == IngredientType.Cup) {
 			name = (IngredientName)Random.Range((int)IngredientName.HotCup,
 																					(int)IngredientName.ColdCup);
+			isSingular = true;
 		}
 		else if (t == IngredientType.Coffee) {
 			name = (IngredientName)Random.Range((int)IngredientName.RegularCoffee,

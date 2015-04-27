@@ -1,16 +1,20 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class CustomerHandler : MonoBehaviour {
 	private Recipe recipeToMake;
 	private RecipeBook recipeBook = new RecipeBook();
+	public Text customerText;
+	private string correctDrinkResponse = "Perfect, thanks!";
 
-	void OnTriggerEnter2D(Collider2D col) {
+	void OnTriggerStay2D(Collider2D col) {
 		if(col.gameObject.tag == "Drink") { 
-			/* if(!col.gameObject.GetComponent<GrabbableObject>().IsHeld) { */
-			/* } */
-			SubmitDrink(col.gameObject.GetComponent<DrinkForCustomer>().drink);
+			if(!col.gameObject.GetComponent<GrabbableObject>().IsHeld) {
+				SubmitDrink(col.gameObject.GetComponent<DrinkForCustomer>().drink);
+				Destroy(col.gameObject);
+			}
 		}
 	}
 
@@ -19,16 +23,31 @@ public class CustomerHandler : MonoBehaviour {
 	}	
 
 	void SubmitDrink(Drink drink) {
-		Debug.Log(CustomerResponse(drink));
-		if(CustomerResponse(drink) == "Perfect, thanks!") {
-			GetNewDrinkToMake();
+		customerText.text = CustomerResponse(drink);
+		if(CustomerResponse(drink) == correctDrinkResponse) {
+			StartCoroutine(GetNewDrinkAfterWait(1f));
+		}
+		else {
+			StartCoroutine(SetTextToDrinkOrderTextAfterWait(4f));
 		}
 	}
 
-	void GetNewDrinkToMake() {
+	IEnumerator GetNewDrinkAfterWait(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		GetNewDrinkToMake(); 
+	}
+
+	// just for development...
+	IEnumerator SetTextToDrinkOrderTextAfterWait(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		customerText.text = DrinkOrderText();
+	}
+
+	public void GetNewDrinkToMake() {
 		recipeToMake = recipeBook.RandomRecipe;
 		// randomize the appropriate ingredients
 		recipeToMake.InitializeDrink(); 	
+		customerText.text = DrinkOrderText();
 		Debug.Log(DrinkOrderText());
 	}
 
@@ -38,7 +57,6 @@ public class CustomerHandler : MonoBehaviour {
 		output += " with";
 		foreach(Ingredient ing in recipeToMake.specificsForCustomerOrder) {
 			output += " " +  ing.NameText.ToLower();
-			Debug.Log(ing.NameText);
 		}
 		output += " please?";
 		return output;
@@ -82,7 +100,7 @@ public class CustomerHandler : MonoBehaviour {
 				notEnough.Count == 0 & 
 				tooMuch.Count == 0 &
 				hasCorrectCup == true) {
-			return "Perfect, thanks!";
+			return correctDrinkResponse;
 		}
 		else {
 			string complaints = "Umm... ";

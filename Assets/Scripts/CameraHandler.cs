@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraHandler : MonoBehaviour {
 	private int numberOfScreens = 2;
 	private int currentScreen = 0;
+	public int CurrentScreen { get { return currentScreen; } }
 	private Vector3[] screenPositions;
 	private bool isMoving = false;
 	public bool IsMoving { get { return isMoving; } }

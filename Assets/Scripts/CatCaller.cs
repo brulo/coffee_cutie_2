@@ -48,16 +48,16 @@ public class CatCaller : MonoBehaviour {
 				"I bet you're pretty tough, huh. I like that."
 			},	
 			new string[] {
-				"It's too bad that aprons so long",
+				"It's too bad that aprons so long...",
 				"Do you have a boyfriend? Doesn't he buy you any cute clothes?",
 				"You don't want to be a barista forever, do you?",
 				"Don't worry, a pretty girl like you, somebody's gonna take care of you."
 			},
 			new string[] {
 				"Why don't you smile?",
-				"You'd be prettier if you smiled",
+				"You'd be prettier if you smiled.",
 				"You think that face looks cute?",
-				"I can tell you think you're really pretty but you're not"
+				"I can tell you think you're really pretty but you're not."
 			}
 		};
 		script = scripts[Random.Range(0, scripts.Length)];

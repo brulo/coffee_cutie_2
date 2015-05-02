@@ -22,7 +22,8 @@ public class CatCaller : MonoBehaviour {
 		else {
 			xPos = Random.Range(screen1Range.x, screen1Range.y);
 		}
-		Vector3 newPosition = new Vector3(xPos, yPos, 0f);
+		Vector3 newPosition = gameObject.transform.position;
+		newPosition.x = xPos;
 		gameObject.transform.position = newPosition;
 		// pick a catcall script.
 		string[][] scripts = new string[][] {

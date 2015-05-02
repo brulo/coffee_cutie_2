@@ -8,6 +8,12 @@ public class CustomerHandler : MonoBehaviour {
 	private RecipeBook recipeBook = new RecipeBook();
 	public Text customerText;
 	private string correctDrinkResponse = "Perfect, thanks!";
+	private GameState gameState;
+
+	void Start() {
+		gameState = GameObject.Find("Game State").GetComponent<GameState>();
+		GetNewDrinkToMake();
+	}	
 
 	void OnTriggerStay2D(Collider2D col) {
 		if(col.gameObject.tag == "Drink") { 
@@ -18,17 +24,14 @@ public class CustomerHandler : MonoBehaviour {
 		}
 	}
 
-	void Start() {
-		GetNewDrinkToMake();
-	}	
-
 	void SubmitDrink(Drink drink) {
 		customerText.text = CustomerResponse(drink);
 		if(CustomerResponse(drink) == correctDrinkResponse) {
+			gameState.AddToScore(8);
 			StartCoroutine(GetNewDrinkAfterWait(1f));
 		}
 		else {
-			StartCoroutine(SetTextToDrinkOrderTextAfterWait(4f));
+			StartCoroutine(SetTextToDrinkOrderTextAfterWait(8f));
 		}
 	}
 

@@ -81,6 +81,26 @@ public class Drink {
 																		  "",
 																			0) {}
 
+	public bool CanAddIngredient(Ingredient ing) {
+		Debug.Log("checking" + ing.NameText);
+		Debug.Log("type " + ing.TypeText);
+		if(ing.IsSingular) {
+			Debug.Log("Ing is singular");
+			if(IngredientNameCounts[(int)ing.Name] < 1) {
+				Debug.Log("Theres " + IngredientNameCounts[(int)ing.Name]);
+				return true;
+			}
+			else {
+				return false; 
+			}
+		}
+		else {
+			// heres where to check for ingredient maximums
+			Debug.Log("Its not singular");
+			return true;
+		}
+	}
+
 	public void RemoveAllIngredients() {
 		ingredients = new List<Ingredient>();
 	}

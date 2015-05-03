@@ -17,20 +17,32 @@ public class Ingredient {
 	public Ingredient(IngredientName n) {
 		name = n;
 		// Determine Type
-		if((int)name <= (int)IngredientName.SoyMilk)
+		if((int)name >= (int)IngredientName.TwoPercentMilk &
+			 (int)name <= (int)IngredientName.SoyMilk) {
 			type = IngredientType.Milk;
-		else if((int)name >= (int)IngredientName.RegularSyrup) 
-			if((int)name <= (int)IngredientName.MochaSyrup)
-				type = IngredientType.Syrup;
-	  else if((int)name >= (int)IngredientName.HotCup) {
-			if((int)name <= (int)IngredientName.EspressoCup) {
-				type = IngredientType.Cup;
-				isSingular = true;
-			}
 		}
-	  else if((int)name >= (int)IngredientName.RegularCoffee)
-			if((int)name <= (int)IngredientName.Espresso)
-				type = IngredientType.Coffee;
+		else if((int)name >= (int)IngredientName.RegularSyrup &
+			      (int)name <= (int)IngredientName.MochaSyrup) { 
+			type = IngredientType.Syrup;
+		}
+		else if((int)name >= (int)IngredientName.HotCup &
+						(int)name <= (int)IngredientName.EspressoCup) {
+			type = IngredientType.Cup;
+			isSingular = true;
+		}
+		else if((int)name >= (int)IngredientName.RegularCoffee &
+						(int)name <= (int)IngredientName.Espresso) {
+			type = IngredientType.Coffee;
+		}
+		else if((int)name >= (int)IngredientName.Ice &
+						(int)name <= (int)IngredientName.Lid) {
+			type = IngredientType.Cold;
+			isSingular = true;
+		}
+		else if((int)name == (int)IngredientName.Cuff) {
+			type = IngredientType.Hot;
+			isSingular = true;
+		}
 
 		nameText = SpaceCamelCase(Name.ToString());
 		typeText = SpaceCamelCase(Type.ToString());
@@ -41,20 +53,29 @@ public class Ingredient {
 		type = t;
 		if(t == IngredientType.Milk) {
 			name = (IngredientName)Random.Range((int)IngredientName.TwoPercentMilk,
-																					(int)IngredientName.SoyMilk);
+					(int)IngredientName.SoyMilk);
 		}
 		else if (t == IngredientType.Syrup) {
 			name = (IngredientName)Random.Range((int)IngredientName.RegularSyrup,
-																					(int)IngredientName.MochaSyrup);
+					(int)IngredientName.MochaSyrup);
 		}
 		else if (t == IngredientType.Cup) {
 			name = (IngredientName)Random.Range((int)IngredientName.HotCup,
-																					(int)IngredientName.ColdCup);
+					(int)IngredientName.ColdCup);
 			isSingular = true;
 		}
 		else if (t == IngredientType.Coffee) {
 			name = (IngredientName)Random.Range((int)IngredientName.RegularCoffee,
-																					(int)IngredientName.Espresso);
+					(int)IngredientName.Espresso);
+		}
+		else if (t == IngredientType.Cold) {
+			name = (IngredientName)Random.Range((int)IngredientName.Ice,
+					(int)IngredientName.Lid);
+			isSingular = true;
+		}
+		else if (t == IngredientType.Hot) {
+			name = IngredientName.Cuff;
+			isSingular = true;
 		}
 
 		nameText = SpaceCamelCase(Name.ToString());
@@ -71,12 +92,16 @@ public enum IngredientType {
 	Milk,
 	Syrup,
 	Cup,
-	Coffee
+	Coffee,
+	Cold,
+	Hot
 }
 
 public enum IngredientName {
 	TwoPercentMilk, NonFatMilk, SoyMilk,
 	RegularSyrup, VanillaSyrup, MochaSyrup,
 	HotCup, ColdCup, EspressoCup,
-	RegularCoffee, Espresso
+	RegularCoffee, Espresso,
+	Ice, Lid, 
+	Cuff
 }

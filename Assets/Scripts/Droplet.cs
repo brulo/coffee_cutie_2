@@ -12,9 +12,13 @@ public class Droplet : MonoBehaviour {
 			float angleFromUpright = Quaternion.Angle(uprightRotation,
 																								drinkRotation);
 			if( (angleFromUpright > -uprightThreshold) & (angleFromUpright < uprightThreshold) ) {
-				Debug.Log("Droplet hit drink!");
-				col.gameObject.GetComponent<DrinkForCustomer>().drink.AddIngredient(ingredient);
-				Destroy(this.gameObject);
+				Drink drink = col.gameObject.GetComponent<DrinkForCustomer>().drink;
+				if(drink.CanAddIngredient(ingredient)) {
+					Debug.Log(drink.CanAddIngredient(ingredient));
+					Debug.Log("Droplet hit drink!");
+					drink.AddIngredient(ingredient);
+					Destroy(this.gameObject);
+				}
 			}
 		}
 		else if(col.gameObject.tag == "Counter") {

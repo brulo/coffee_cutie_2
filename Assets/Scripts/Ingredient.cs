@@ -30,7 +30,7 @@ public class Ingredient {
 			type = IngredientType.Cup;
 			isSingular = true;
 		}
-		else if((int)name >= (int)IngredientName.RegularCoffee &
+		else if((int)name >= (int)IngredientName.Coffee &
 						(int)name <= (int)IngredientName.Espresso) {
 			type = IngredientType.Coffee;
 		}
@@ -65,7 +65,7 @@ public class Ingredient {
 			isSingular = true;
 		}
 		else if (t == IngredientType.Coffee) {
-			name = (IngredientName)Random.Range((int)IngredientName.RegularCoffee,
+			name = (IngredientName)Random.Range((int)IngredientName.Coffee,
 					(int)IngredientName.Espresso);
 		}
 		else if (t == IngredientType.Cold) {
@@ -101,7 +101,7 @@ public enum IngredientName {
 	TwoPercentMilk, NonFatMilk, SoyMilk,
 	RegularSyrup, VanillaSyrup, MochaSyrup,
 	HotCup, ColdCup, EspressoCup,
-	RegularCoffee, Espresso,
+	Coffee, Espresso,
 	Ice, Lid, 
 	Cuff
 }

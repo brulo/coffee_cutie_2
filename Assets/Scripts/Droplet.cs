@@ -17,6 +17,9 @@ public class Droplet : MonoBehaviour {
 					Debug.Log(drink.CanAddIngredient(ingredient));
 					Debug.Log("Droplet hit drink!");
 					drink.AddIngredient(ingredient);
+					/* col.gameObject.GetComponent<DrinkAnimator>().UpdateRenderer(drink); */
+					DrinkAnimator drinkAnimator = col.gameObject.GetComponent<DrinkAnimator>();
+					drinkAnimator.UpdateRenderer();
 					Destroy(this.gameObject);
 				}
 			}

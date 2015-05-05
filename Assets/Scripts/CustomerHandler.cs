@@ -57,9 +57,15 @@ public class CustomerHandler : MonoBehaviour {
 	public string DrinkOrderText() {
 		string output = "Could I get a ";
 		output += recipeToMake.Name.ToLower();
-		output += " with";
-		foreach(Ingredient ing in recipeToMake.specificsForCustomerOrder) {
-			output += " " +  ing.NameText.ToLower();
+		int numTypes = 0;
+		for(int i = 0; i < recipeToMake.TypeCounts.Length; i++) {
+			numTypes += recipeToMake.TypeCounts[i]; 
+		}
+		if(numTypes > 0) {
+			output += " with";
+			foreach(Ingredient ing in recipeToMake.specificsForCustomerOrder) {
+				output += " " +  ing.NameText.ToLower();
+			}
 		}
 		output += " please?";
 		return output;

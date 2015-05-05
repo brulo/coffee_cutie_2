@@ -82,7 +82,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe largeCoffee = new Recipe("Large Coffee",
+	public static Recipe largeCoffee = new Recipe("Drip Coffee",
 			IngredientName.HotCup,
 			new IngredientType[] {
 			},
@@ -91,7 +91,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe largeCoffeeWithMilk = new Recipe("Large Coffee",
+	public static Recipe largeCoffeeWithMilk = new Recipe("Drip Coffee",
 			IngredientName.HotCup,
 			new IngredientType[] {
 				IngredientType.Milk 
@@ -101,7 +101,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe icedCoffee = new Recipe("Large Coffee",
+	public static Recipe icedCoffee = new Recipe("Iced Coffee",
 			IngredientName.ColdCup,
 			new IngredientType[] {
 			},
@@ -111,7 +111,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe icedCoffeeWithMilk = new Recipe("Large Coffee",
+	public static Recipe icedCoffeeWithMilk = new Recipe("Ice Coffee",
 			IngredientName.ColdCup,
 			new IngredientType[] {
 				IngredientType.Milk 

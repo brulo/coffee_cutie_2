@@ -7,6 +7,7 @@ public class Recipe {
 	string name;
 	public string Name { get { return name; } }
 	private int[] typeCounts;
+	public int[] TypeCounts { get { return typeCounts; } }
 	private int[] specificCounts;
 	public Drink drink;
 	public List<Ingredient> specificsForCustomerOrder;

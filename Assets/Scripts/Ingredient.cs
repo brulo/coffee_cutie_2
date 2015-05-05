@@ -21,7 +21,7 @@ public class Ingredient {
 			 (int)name <= (int)IngredientName.SoyMilk) {
 			type = IngredientType.Milk;
 		}
-		else if((int)name >= (int)IngredientName.RegularSyrup &
+		else if((int)name >= (int)IngredientName.VanillaSyrup &
 			      (int)name <= (int)IngredientName.MochaSyrup) { 
 			type = IngredientType.Syrup;
 		}
@@ -56,7 +56,7 @@ public class Ingredient {
 					(int)IngredientName.SoyMilk);
 		}
 		else if (t == IngredientType.Syrup) {
-			name = (IngredientName)Random.Range((int)IngredientName.RegularSyrup,
+			name = (IngredientName)Random.Range((int)IngredientName.VanillaSyrup,
 					(int)IngredientName.MochaSyrup);
 		}
 		else if (t == IngredientType.Cup) {
@@ -99,7 +99,7 @@ public enum IngredientType {
 
 public enum IngredientName {
 	TwoPercentMilk, NonFatMilk, SoyMilk,
-	RegularSyrup, VanillaSyrup, MochaSyrup,
+	VanillaSyrup, MochaSyrup,
 	HotCup, ColdCup, EspressoCup,
 	Coffee, Espresso,
 	Ice, Lid, 

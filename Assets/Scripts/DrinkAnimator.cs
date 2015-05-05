@@ -22,13 +22,6 @@ public class DrinkAnimator : MonoBehaviour {
 
 	public SpriteRenderer liquidRenderer;
 	public SpriteRenderer foamRenderer;
-	/* private Drink drink; */
-
-	void Start() {
-		/* drink = GetComponent<DrinkForCustomer>().drink; */
-		liquidRenderer.sortingLayerName = "Drink Liquid";
-		foamRenderer.sortingLayerName = "Drink Foam";
-	}
 
 	public void UpdateRenderer() { 
 		Drink drink = GetComponent<DrinkForCustomer>().drink;

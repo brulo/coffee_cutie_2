@@ -20,8 +20,8 @@ public class DrinkAnimator : MonoBehaviour {
 	public Sprite coffeeTwo;
 	public Sprite coffeeThree;
 
-	private SpriteRenderer liquidRenderer;
-	private SpriteRenderer foamRenderer;
+	public SpriteRenderer liquidRenderer;
+	public SpriteRenderer foamRenderer;
 	/* private Drink drink; */
 
 	void Start() {
@@ -32,6 +32,7 @@ public class DrinkAnimator : MonoBehaviour {
 
 	public void UpdateRenderer() { 
 		Drink drink = GetComponent<DrinkForCustomer>().drink;
+
 		int numCoffee = drink.IngredientTypeCounts[(int)IngredientType.Coffee];
 		int numMilk = drink.IngredientTypeCounts[(int)IngredientType.Milk];
 		int numLiquids = numMilk + numCoffee;
@@ -57,7 +58,7 @@ public class DrinkAnimator : MonoBehaviour {
 				}
 			}
 			if(numLiquids == 2) {
-				if(numCoffee == 2) {
+				if(numCoffee == 2 & numMilk == 0) {
 					if(numMocha > 0) {
 						liquidRenderer.sprite = mochaTwo;
 					}
@@ -65,7 +66,7 @@ public class DrinkAnimator : MonoBehaviour {
 						liquidRenderer.sprite = coffeeTwo;
 					}
 				}
-				else if(numMilk == 1) {
+				else if(numMilk == 1 & numCoffee == 1) {
 					if(numMocha > 0) {
 						liquidRenderer.sprite = mochaTwo;
 					}
@@ -73,7 +74,7 @@ public class DrinkAnimator : MonoBehaviour {
 						liquidRenderer.sprite = latteTwo;
 					}
 				}
-				else {
+				else if (numMilk == 2) {
 					if(numMocha > 0) {
 						liquidRenderer.sprite = mochaTwo;
 					}
@@ -82,8 +83,8 @@ public class DrinkAnimator : MonoBehaviour {
 					}
 				}
 			}
-			else {
-				if(numCoffee == 3) {
+			else { // more than 2 liquids
+				if(numCoffee > 2 & numMilk == 0) {
 					if(numMocha > 0) {
 						liquidRenderer.sprite = mochaThree;
 					}
@@ -91,7 +92,7 @@ public class DrinkAnimator : MonoBehaviour {
 						liquidRenderer.sprite = coffeeThree;
 					}
 				}
-				if(numCoffee > 0 & numMilk > 0) {
+				else if(numCoffee > 0 & numMilk > 0) {
 					if(numMocha > 0) {
 						liquidRenderer.sprite = mochaThree;
 					}
@@ -99,7 +100,7 @@ public class DrinkAnimator : MonoBehaviour {
 						liquidRenderer.sprite = latteThree;
 					}
 				}
-				else {
+				else if(numMilk > 2) {
 					if(numMocha > 0) {
 						liquidRenderer.sprite = mochaThree;
 					}
@@ -110,7 +111,7 @@ public class DrinkAnimator : MonoBehaviour {
 			}
 		}
 		else {
-			liquidRenderer.sprite = null;
+			/* liquidRenderer.enabled = false; */
 		}
 	}
 }

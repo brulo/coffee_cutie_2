@@ -46,18 +46,18 @@ public class RecipeBook {
 			},
 			new IngredientName[] {
 				IngredientName.Espresso, IngredientName.Espresso, 
-				IngredientName.VanillaSyrup, IngredientName.Ice
+				IngredientName.VanillaSyrup 
 			}
 	);
 
 	public static Recipe coldVanillaLatte = new Recipe("Cold Vanilla Latte",
-			IngredientName.HotCup,
+			IngredientName.ColdCup,
 			new IngredientType[] {
 				IngredientType.Milk 
 			},
 			new IngredientName[] {
 				IngredientName.Espresso, IngredientName.Espresso, 
-				IngredientName.VanillaSyrup
+				IngredientName.VanillaSyrup, IngredientName.Ice
 			}
 	);
 
@@ -68,7 +68,7 @@ public class RecipeBook {
 			},
 			new IngredientName[] {
 				IngredientName.Espresso, IngredientName.Espresso, 
-				IngredientName.MochaSyrup, IngredientName.Ice
+				IngredientName.MochaSyrup
 			}
 	);
 
@@ -88,7 +88,7 @@ public class RecipeBook {
 			new IngredientType[] {
 			},
 			new IngredientName[] {
-				IngredientName.Coffee, IngredientName.Coffee 
+				IngredientName.Coffee, IngredientName.Coffee, IngredientName.Coffee
 			}
 	);
 
@@ -107,7 +107,7 @@ public class RecipeBook {
 			new IngredientType[] {
 			},
 			new IngredientName[] {
-				IngredientName.Coffee, IngredientName.Coffee,
+				IngredientName.Coffee, IngredientName.Coffee, IngredientName.Coffee,
 				IngredientName.Ice
 			}
 	);
@@ -118,7 +118,7 @@ public class RecipeBook {
 				IngredientType.Milk 
 			},
 			new IngredientName[] {
-				IngredientName.Coffee, IngredientName.Coffee,
+				IngredientName.Coffee, IngredientName.Coffee, IngredientName.Coffee,
 				IngredientName.Ice
 			}
 	);

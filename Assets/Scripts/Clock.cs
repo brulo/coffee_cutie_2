@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Clock : MonoBehaviour {
 
-	public float roundFullTime = 60f;
 	public Sprite[] frames;
 	SpriteRenderer renderer;
 	int spriteStages;
@@ -21,7 +20,7 @@ public class Clock : MonoBehaviour {
 		renderer = GetComponent<SpriteRenderer>();
 		gameState = GameObject.Find("Game State").GetComponent<GameState>();
 		/* soundPlayer = GetComponent<AudioSource> (); */
-		spriteStages=frames.Length;
+		spriteStages = frames.Length;
 	}
 
 	void Update () {
@@ -38,9 +37,9 @@ public class Clock : MonoBehaviour {
 	IEnumerator FlashClockSprite(int numFlashes) {
 		for(int i = 0; i < numFlashes; i++) {
 			renderer.material.color = Color.red;
-			yield return new WaitForSeconds(0.25f);
+			yield return new WaitForSeconds(0.5f);
 			renderer.material.color = Color.white;
-			yield return new WaitForSeconds(0.25f);
+			yield return new WaitForSeconds(0.5f);
 		}
 	}
 
@@ -71,16 +70,13 @@ public class Clock : MonoBehaviour {
 		renderer.material.color = Color.red;
 	}
 
-	public void StartClock() {
+	public void StartClock(float roundTimeInSeconds) {
 		stopped = false;
-		timeStep=roundFullTime/spriteStages;
+		timeStep = roundTimeInSeconds/spriteStages;
+		Debug.Log("timestep: " + timeStep);
 		currentTime = timeStep;
 		currentFrame = 0;
 		renderer.sprite = frames [currentFrame];
 	}
 	
-	public void StartClock(float newRoundTime) {
-		roundFullTime=newRoundTime;
-		StartClock();
-	}
 }

@@ -14,7 +14,7 @@ public class GameState : MonoBehaviour {
 		gameState = GameStates.playing;
 
 		clock = GameObject.Find("Clock").GetComponent<Clock>();
-		clock.StartClock();
+		clock.StartClock(180f);
 		cashRegister = GameObject.Find("Cash Register").GetComponent<CashRegister>();
 	}
 

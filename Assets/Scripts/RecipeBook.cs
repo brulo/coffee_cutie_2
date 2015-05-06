@@ -6,8 +6,8 @@ public class RecipeBook {
 		glassOfMilk, chocolateMilk, 
 		hotVanillaLatte, coldVanillaLatte, 
 		hotMochaLatte, coldMochaLatte,
-		largeCoffee, largeCoffeeWithMilk,
-		icedCoffee, icedCoffeeWithMilk,
+		largeCoffeeWithMilk, largeCoffee,
+		icedCoffeeWithMilk, icedCoffee,
 		doubleEspresso
 	};
 	public Recipe[] AllRecipes { 
@@ -83,7 +83,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe largeCoffee = new Recipe("Drip Coffee",
+	public static Recipe largeCoffee = new Recipe("Drip Coffee Without Milk",
 			IngredientName.HotCup,
 			new IngredientType[] {
 			},
@@ -102,7 +102,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe icedCoffee = new Recipe("Iced Coffee",
+	public static Recipe icedCoffee = new Recipe("Iced Coffee Without Milk",
 			IngredientName.ColdCup,
 			new IngredientType[] {
 			},

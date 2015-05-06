@@ -22,7 +22,7 @@ public class RecipeBook {
 	public static Recipe glassOfMilk = new Recipe("Glass of Milk",
 			IngredientName.ColdCup,
 			new IngredientType[] {
-				IngredientType.Milk 
+				IngredientType.Milk, IngredientType.Milk, IngredientType.Milk 
 			},
 			new IngredientName[] {
 			}
@@ -31,7 +31,7 @@ public class RecipeBook {
 	public static Recipe chocolateMilk = new Recipe("Chocolate Milk",
 			IngredientName.ColdCup,
 			new IngredientType[] {
-				IngredientType.Milk 
+				IngredientType.Milk, IngredientType.Milk, IngredientType.Milk 
 			},
 			new IngredientName[] {
 				IngredientName.MochaSyrup

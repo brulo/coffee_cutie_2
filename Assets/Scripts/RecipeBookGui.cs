@@ -13,6 +13,8 @@ public class RecipeBookGui : MonoBehaviour {
 	void Start() {
 			leftPageText.text = recipeBook.AllRecipes[leftPageIndex].RecipeBookText;
 			rightPageText.text = recipeBook.AllRecipes[leftPageIndex+1].RecipeBookText;
+			TurnPage(1);
+			TurnPage(-1);
 	}
 
 	// Use positive/negative number to flip that many pages left/right.

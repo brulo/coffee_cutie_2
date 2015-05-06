@@ -6,8 +6,11 @@ public class CatCaller : MonoBehaviour {
 	private string[] script;
 	private int scriptIdx = -1;
 	Text catCallerText;
+	private AudioSource audioSource;
 
 	void Start() {
+		audioSource = GetComponent<AudioSource>();
+		audioSource.Play();
 		Transform speechBubbleText = transform.Find("Cat Caller Text");
 		catCallerText = speechBubbleText.GetComponent<Text>();
 		// Set x position based on current screen.
@@ -66,6 +69,7 @@ public class CatCaller : MonoBehaviour {
 
 	void OnMouseUp() { 
 		AdvanceDialog();
+		audioSource.Play();
 	}
 
 	void AdvanceDialog() {

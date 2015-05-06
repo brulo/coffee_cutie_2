@@ -11,8 +11,8 @@ public class CatCaller : MonoBehaviour {
 		Transform speechBubbleText = transform.Find("Cat Caller Text");
 		catCallerText = speechBubbleText.GetComponent<Text>();
 		// Set x position based on current screen.
-		Vector2 screen0Range = new Vector2(-2.24f, 6.72f);
-		Vector2 screen1Range = new Vector2(13.84f, 22.84f);
+		Vector2 screen0Range = new Vector2(-4.33f, 6f);
+		Vector2 screen1Range = new Vector2(11.02f, 19.27f);
 		float yPos = 0f;
 		float xPos;
 		GameObject camera = GameObject.Find("Main Camera");

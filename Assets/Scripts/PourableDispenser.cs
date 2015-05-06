@@ -11,7 +11,7 @@ public class PourableDispenser : StationaryDispenser {
 	private bool isPouring = false;
 	private Quaternion defaultRotation = Quaternion.Euler(0, 0, 0);
 	private Quaternion pourRotation = Quaternion.Euler(0, 0, 90);
-	private float lastDispenseTime; 
+	protected float lastDispenseTime; 
 
 	private RotatableObject rotatable;
 	private GrabbableObject grabbable;

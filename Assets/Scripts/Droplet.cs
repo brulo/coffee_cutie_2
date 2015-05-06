@@ -23,6 +23,15 @@ public class Droplet : MonoBehaviour {
 				}
 			}
 		}
+		else if(col.gameObject.tag == "Milk Pitcher") { 
+			MilkPitcher milkPitcher = col.gameObject.GetComponent<MilkPitcher>();
+			if(ingredient.Type == IngredientType.Milk) {
+				if(!milkPitcher.HasMilk) {
+					milkPitcher.AddMilk(ingredient);
+					Destroy(this.gameObject);
+				}
+			}
+		}
 		else if(col.gameObject.tag == "Counter") {
 			Debug.Log("Droplet hit counter!");
 			Destroy(this.gameObject);

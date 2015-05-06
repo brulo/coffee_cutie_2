@@ -7,7 +7,8 @@ public class RecipeBook {
 		hotVanillaLatte, coldVanillaLatte, 
 		hotMochaLatte, coldMochaLatte,
 		largeCoffee, largeCoffeeWithMilk,
-		icedCoffee, icedCoffeeWithMilk
+		icedCoffee, icedCoffeeWithMilk,
+		doubleEspresso
 	};
 	public Recipe[] AllRecipes { 
 		get { return allRecipes; } 
@@ -38,7 +39,7 @@ public class RecipeBook {
 	);
 
 
-	public static Recipe hotVanillaLatte = new Recipe("Hot Latte",
+	public static Recipe hotVanillaLatte = new Recipe("Hot Vanilla Latte",
 			IngredientName.HotCup,
 			new IngredientType[] {
 				IngredientType.Milk 
@@ -49,7 +50,7 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe coldVanillaLatte = new Recipe("Cold Latte",
+	public static Recipe coldVanillaLatte = new Recipe("Cold Vanilla Latte",
 			IngredientName.HotCup,
 			new IngredientType[] {
 				IngredientType.Milk 
@@ -119,6 +120,15 @@ public class RecipeBook {
 			new IngredientName[] {
 				IngredientName.Coffee, IngredientName.Coffee,
 				IngredientName.Ice
+			}
+	);
+
+	public static Recipe doubleEspresso = new Recipe("Double Espresso",
+			IngredientName.HotCup,
+			new IngredientType[] {
+			},
+			new IngredientName[] {
+				IngredientName.Espresso, IngredientName.Espresso,
 			}
 	);
 }

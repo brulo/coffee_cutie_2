@@ -43,8 +43,9 @@ public class Ingredient {
 			type = IngredientType.Hot;
 			isSingular = true;
 		}
-		else if((int)name == (int)IngredientName.Foam) {
-			type = IngredientType.Foam;
+		else if((int)name >= (int)IngredientName.SteamedTwoPercentMilk &
+						(int)name <= (int)IngredientName.SteamedSoyMilk) {
+			type = IngredientType.SteamedMilk;
 			isSingular = true;
 		}
 
@@ -81,8 +82,9 @@ public class Ingredient {
 			name = IngredientName.Cuff;
 			isSingular = true;
 		}
-		else if (t == IngredientType.Foam) {
-			name = IngredientName.Cuff;
+		else if (t == IngredientType.SteamedMilk) {
+			name = (IngredientName)Random.Range((int)IngredientName.SteamedTwoPercentMilk,
+					(int)IngredientName.SteamedSoyMilk);
 			isSingular = true;
 		}
 
@@ -103,7 +105,7 @@ public enum IngredientType {
 	Coffee,
 	Cold,
 	Hot,
-	Foam
+	SteamedMilk
 }
 
 public enum IngredientName {
@@ -113,5 +115,5 @@ public enum IngredientName {
 	Coffee, Espresso,
 	Ice, Lid, 
 	Cuff, 
-	Foam
+	SteamedTwoPercentMilk, SteamedNonFatMilk, SteamedSoyMilk
 }

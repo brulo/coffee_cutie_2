@@ -5,6 +5,8 @@ public class SpawnPrefabOnClick : MonoBehaviour {
 	public GameObject prefab;
 
 	void OnMouseUp() {
-		Instantiate(prefab, transform.position, Quaternion.identity);
+		GameObject go = Instantiate(prefab, transform.position, Quaternion.identity) as GameObject;
+		GameObject round = GameObject.Find("Round");
+		go.transform.parent = round.transform;
 	}
 }

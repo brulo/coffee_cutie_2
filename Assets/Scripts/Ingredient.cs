@@ -43,6 +43,10 @@ public class Ingredient {
 			type = IngredientType.Hot;
 			isSingular = true;
 		}
+		else if((int)name == (int)IngredientName.Foam) {
+			type = IngredientType.Foam;
+			isSingular = true;
+		}
 
 		nameText = SpaceCamelCase(Name.ToString());
 		typeText = SpaceCamelCase(Type.ToString());
@@ -77,6 +81,10 @@ public class Ingredient {
 			name = IngredientName.Cuff;
 			isSingular = true;
 		}
+		else if (t == IngredientType.Foam) {
+			name = IngredientName.Cuff;
+			isSingular = true;
+		}
 
 		nameText = SpaceCamelCase(Name.ToString());
 		typeText = SpaceCamelCase(Type.ToString());
@@ -94,7 +102,8 @@ public enum IngredientType {
 	Cup,
 	Coffee,
 	Cold,
-	Hot
+	Hot,
+	Foam
 }
 
 public enum IngredientName {
@@ -103,5 +112,6 @@ public enum IngredientName {
 	HotCup, ColdCup, EspressoCup,
 	Coffee, Espresso,
 	Ice, Lid, 
-	Cuff
+	Cuff, 
+	Foam
 }

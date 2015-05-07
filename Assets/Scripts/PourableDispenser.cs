@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PourableDispenser : StationaryDispenser {
 	public float tiltSpeed = 100f;
-	public float timeBetweenDispenses = 0.8f; 
+	public float timeBetweenDispenses = 1.25f; 
 
 	private bool isTilting = false;
 	private bool isUntilting = false;
@@ -18,6 +18,7 @@ public class PourableDispenser : StationaryDispenser {
 
 	protected override void Start() {
 		base.Start();
+		timeBetweenDispenses = 1.25f;
 		rotatable = GetComponent<RotatableObject>();
 		grabbable = GetComponent<GrabbableObject>();
 	}

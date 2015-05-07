@@ -118,7 +118,7 @@ public class RecipeBook {
 				IngredientType.Milk 
 			},
 			new IngredientName[] {
-				IngredientName.Coffee, IngredientName.Coffee, IngredientName.Coffee,
+				IngredientName.Coffee, IngredientName.Coffee,
 				IngredientName.Ice
 			}
 	);

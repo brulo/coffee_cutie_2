@@ -15,6 +15,7 @@ public class GameState : MonoBehaviour {
 
 		clock = GameObject.Find("Clock").GetComponent<Clock>();
 		clock.StartClock(180f);
+		/* clock.StartClock(5f); */
 		cashRegister = GameObject.Find("Cash Register").GetComponent<CashRegister>();
 	}
 
@@ -45,7 +46,10 @@ public class GameState : MonoBehaviour {
 		// show end screen
 		endRoundScreen.SetActive(true);
 		GameObject.Find("End Round Score").GetComponent<Text>().text = score + "";
+		GameObject.Find("Music").SetActive(false);
 	}
+
+	
 		
 	public void setGameState(GameStates newGameState) {
 		if(newGameState == GameStates.playing) {

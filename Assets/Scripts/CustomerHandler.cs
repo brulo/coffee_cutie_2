@@ -9,11 +9,64 @@ public class CustomerHandler : MonoBehaviour {
 	public Text customerText;
 	private string correctDrinkResponse = "Perfect, thanks!";
 	private GameState gameState;
+	public GameObject customerSpeech;
+	public float moveSpeed;
+	public Vector3 registerPosition;
+	public Vector3 offscreenPosition;
+	public Sprite[] customerSprites;
+	private SpriteRenderer spriteRenderer;
 
 	void Start() {
+		spriteRenderer = GetComponent<SpriteRenderer>();
 		gameState = GameObject.Find("Game State").GetComponent<GameState>();
-		GetNewDrinkToMake();
+		customerSpeech.SetActive(false);
+		/* GetNewDrinkToMake(); */
+		moveSpeed = 5f;
+		// fuck these bullshit vector3s
+	  offscreenPosition = new Vector3(-11f, -0.5f, 0f);
+	 	registerPosition = new Vector3(-6.6f, -0.5f, 0f);
+		transform.position = offscreenPosition;
+		/* StartCoroutine(SendInNewCustomer()); */
 	}	
+
+	public enum CustomerState { 
+		MovingToRegister,
+		Ordering,
+		MovingFromRegister
+	}
+	public CustomerState customerState = CustomerState.MovingToRegister;
+
+	void Update() {
+		if(customerState == CustomerState.MovingToRegister) {
+			if(transform.position.x <= registerPosition.x - 0.00001f) {
+				float step = moveSpeed * Time.deltaTime;
+				Vector3 newPosition = Vector3.MoveTowards(transform.position,
+																									registerPosition,
+																									step);
+				transform.position = newPosition;
+			}
+			else {
+				customerState = CustomerState.Ordering;
+				customerSpeech.SetActive(true);
+				GetNewDrinkToMake();
+			}
+		}
+		else if(customerState == CustomerState.MovingFromRegister) {
+			if(transform.position.x >= offscreenPosition.x + 0.00001f) {
+				float step = moveSpeed * Time.deltaTime;
+				Vector3 newPosition = Vector3.MoveTowards(transform.position,
+																									offscreenPosition,
+																									step);
+				transform.position = newPosition;
+			}
+			else {
+				// switch the sprites!
+				int idx = Random.Range(0, customerSprites.Length);
+				spriteRenderer.sprite = customerSprites[idx];
+				customerState = CustomerState.MovingToRegister;
+			}
+		}
+	}
 
 	void OnTriggerStay2D(Collider2D col) {
 		if(col.gameObject.tag == "Drink") { 
@@ -24,14 +77,20 @@ public class CustomerHandler : MonoBehaviour {
 		}
 	}
 
+	IEnumerator MoveAwayAfterWait(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		customerState = CustomerState.MovingFromRegister; 
+		customerSpeech.SetActive(false);
+	}
 	void SubmitDrink(Drink drink) {
 		customerText.text = CustomerResponse(drink);
 		if(CustomerResponse(drink) == correctDrinkResponse) {
-			gameState.AddToScore(8);
-			StartCoroutine(GetNewDrinkAfterWait(1f));
+			gameState.AddToScore(7);
+			/* StartCoroutine(GetNewDrinkAfterWait(1f)); */
+			StartCoroutine(MoveAwayAfterWait(1f));
 		}
 		else {
-			StartCoroutine(SetTextToDrinkOrderTextAfterWait(8f));
+			StartCoroutine(SetTextToDrinkOrderTextAfterWait(5f));
 		}
 	}
 

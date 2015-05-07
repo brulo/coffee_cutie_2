@@ -3,14 +3,20 @@ using System.Collections;
 
 public class HighlightSpriteOnMouseEnter : MonoBehaviour {
 
-	public Color highlightColor = Color.red;
+	public Color highlightColor = Color.grey;
+	public GameObject highlightThis;
+	private SpriteRenderer renderer;
+
+	void Start() {
+		renderer = highlightThis.GetComponent<SpriteRenderer>();
+	}
 
 	void OnMouseEnter() {
-		GetComponent<SpriteRenderer>().color = highlightColor;
+		renderer.color = highlightColor;
 	}
 
 	void OnMouseExit() {
-		GetComponent<SpriteRenderer>().color = Color.white;
+		renderer.color = Color.white;
 	}
 
 }	

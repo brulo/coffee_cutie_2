@@ -15,7 +15,6 @@ public class GameState : MonoBehaviour {
 
 		clock = GameObject.Find("Clock").GetComponent<Clock>();
 		clock.StartClock(180f);
-		/* clock.StartClock(5f); */
 		cashRegister = GameObject.Find("Cash Register").GetComponent<CashRegister>();
 	}
 
@@ -29,8 +28,13 @@ public class GameState : MonoBehaviour {
 	}
 
 	public void EndRound() {
-		// freeze time
-		Time.timeScale = 0;
+		StartCoroutine(EndTheRound(6f));
+	}
+
+	IEnumerator EndTheRound(float seconds) {
+		GameObject.Find("Music").SetActive(false);
+		GetComponent<AudioSource>().Play();
+		yield return new WaitForSeconds(seconds);
 
 		GameObject round = GameObject.Find("Round");
 		// disable all gui elements
@@ -46,8 +50,10 @@ public class GameState : MonoBehaviour {
 		// show end screen
 		endRoundScreen.SetActive(true);
 		GameObject.Find("End Round Score").GetComponent<Text>().text = score + "";
-		GameObject.Find("Music").SetActive(false);
+		// freeze time
+		Time.timeScale = 0;
 	}
+
 
 	
 		

@@ -13,6 +13,9 @@ public class CameraHandler : MonoBehaviour {
 	public float lerpTime = 0.5f;
 	private float currentLerpTime;
 
+	public GameObject leftScreenButton;
+	public GameObject rightScreenButton;
+
 	void Start() {
 		Vector3 screenDimsInPixels = new Vector3(Screen.width, 
 																						 Screen.height, 0);
@@ -65,6 +68,14 @@ public class CameraHandler : MonoBehaviour {
 
 			currentScreen = newScreen;
 			isMoving = true;
+			if(currentScreen == 0) {
+				rightScreenButton.SetActive(true);
+				leftScreenButton.SetActive(false);
+			}
+			else if(currentScreen == 1) {
+				rightScreenButton.SetActive(false);
+				leftScreenButton.SetActive(true);
+			}
 		}
 	}
 }

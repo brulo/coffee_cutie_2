@@ -11,10 +11,11 @@ public class GameState : MonoBehaviour {
 	public GameObject endRoundScreen;
 
 	void Start() {
+		Time.timeScale = 1f;
 		gameState = GameStates.playing;
 
 		clock = GameObject.Find("Clock").GetComponent<Clock>();
-		clock.StartClock(180f);
+		clock.StartClock(10f);
 		cashRegister = GameObject.Find("Cash Register").GetComponent<CashRegister>();
 	}
 

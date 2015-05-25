@@ -102,27 +102,6 @@ public class RecipeBook {
 			}
 	);
 
-	public static Recipe icedCoffee = new Recipe("Iced Coffee Without Milk",
-			IngredientName.ColdCup,
-			new IngredientType[] {
-			},
-			new IngredientName[] {
-				IngredientName.Coffee, IngredientName.Coffee, IngredientName.Coffee,
-				IngredientName.Ice
-			}
-	);
-
-	public static Recipe icedCoffeeWithMilk = new Recipe("Ice Coffee",
-			IngredientName.ColdCup,
-			new IngredientType[] {
-				IngredientType.Milk 
-			},
-			new IngredientName[] {
-				IngredientName.Coffee, IngredientName.Coffee,
-				IngredientName.Ice
-			}
-	);
-
 	public static Recipe doubleEspresso = new Recipe("Double Espresso",
 			IngredientName.HotCup,
 			new IngredientType[] {

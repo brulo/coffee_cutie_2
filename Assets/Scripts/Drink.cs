@@ -95,21 +95,9 @@ public class Drink {
 			}
 		}
 		else {
-			if(ing.Type == IngredientType.Milk ||
-					ing.Type == IngredientType.Coffee) {
-				int numBigLiquids = 0;
-				numBigLiquids += IngredientTypeCounts[(int)IngredientType.Milk];
-				numBigLiquids += IngredientTypeCounts[(int)IngredientType.Coffee];
-				if(numBigLiquids < 3) { 
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else {
-				return true;
-			}
+			// heres where to check for ingredient maximums
+			Debug.Log("Its not singular");
+			return true;
 		}
 	}
 

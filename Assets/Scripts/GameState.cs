@@ -11,6 +11,7 @@ public class GameState : MonoBehaviour {
 	public GameObject endRoundScreen;
 
 	void Start() {
+		Application.runInBackground = true;
 		Time.timeScale = 1f;
 		gameState = GameStates.playing;
 

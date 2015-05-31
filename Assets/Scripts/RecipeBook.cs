@@ -7,7 +7,6 @@ public class RecipeBook {
 		hotVanillaLatte, coldVanillaLatte, 
 		hotMochaLatte, coldMochaLatte,
 		largeCoffeeWithMilk, largeCoffee,
-		icedCoffeeWithMilk, icedCoffee,
 		doubleEspresso
 	};
 	public Recipe[] AllRecipes { 

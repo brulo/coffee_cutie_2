@@ -23,9 +23,8 @@ public class CustomerHandler : MonoBehaviour {
 		/* GetNewDrinkToMake(); */
 		moveSpeed = 5f;
 		// fuck these bullshit vector3s
-		float yPos = -0.025f;
-	  offscreenPosition = new Vector3(-11f, yPos, 0f);
-	 	registerPosition = new Vector3(-6.55f, yPos, 0f);
+	  offscreenPosition = new Vector3(-11f, -0.5f, 0f);
+	 	registerPosition = new Vector3(-6.6f, -0.5f, 0f);
 		transform.position = offscreenPosition;
 		/* StartCoroutine(SendInNewCustomer()); */
 	}	
